@@ -10,7 +10,7 @@ class AepsRepository extends Disposable {
 
   Future<List> read(int page, String referencia) async {
     final response =
-    await http.get("http://192.168.1.140:8080/modeloFicheiro?page=$page&size=5&referencia=$referencia",headers: <String,String>{
+    await http.get("https://gestoreferencia-pagamento-api.herokuapp.com/modeloFicheiro?page=$page&size=5&referencia=$referencia",headers: <String,String>{
       "Content-Type":"application/json"
     });
     if(response.statusCode==200){
@@ -34,7 +34,7 @@ class AepsRepository extends Disposable {
 
   Future<List> readHeader(int page, String entidade) async {
     final response =
-    await http.get("http://192.168.1.140:8080/modeloFicheiro/headerCliente?page=$page&size=5&entidade=$entidade",headers: <String,String>{
+    await http.get("https://gestoreferencia-pagamento-api.herokuapp.com/modeloFicheiro/headerCliente?page=$page&size=5&entidade=$entidade",headers: <String,String>{
       "Content-Type":"application/json"
     });
     if(response.statusCode==200){
