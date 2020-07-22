@@ -1,7 +1,7 @@
+import 'package:gestorReferenciaPagamentoUi/app/modules/pagamento/pages/pagamento_page.dart';
 import 'repositories/pagamento_repository.dart';
 import 'pagamento_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'pages/pagamento_page.dart';
 
 class PagamentoModule extends ChildModule {
   @override

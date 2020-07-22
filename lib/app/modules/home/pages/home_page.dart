@@ -29,11 +29,27 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.readErro();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF2d363b),
         title: Text("Gestor de Referencia de Pagamento"),
-        actions: [DropDown(_list)],
+        actions: [
+          DropDown(_list),
+          Padding(padding: EdgeInsets.only(left: 15)),
+          Observer(builder: (_){
+            return controller.errosInterno==null||controller.errosInterno.isEmpty?
+            IconButton(
+              icon: Icon(Icons.notifications),
+              onPressed: () {},
+            ):
+            IconButton(
+              icon: Icon(Icons.notifications_active),
+              onPressed: () {},
+            );
+          }),
+          Padding(padding: EdgeInsets.only(left: 10)),
+        ],
         elevation: 10,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
@@ -75,9 +91,9 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                   35,
                   "/meps",
                   "Ficheiro de Movimentos",
-                  "Enviado pela EGR à Empresa de Serviços por forma a informar todos os"+
-                    "pagamentos das suas faturas que ocorreram durante o Período Contabilístico"+
-                    "Central.",
+                  "Enviado pela EGR à Empresa de Serviços por forma a informar todos os" +
+                      "pagamentos das suas faturas que ocorreram durante o Período Contabilístico" +
+                      "Central.",
                 ),
                 CardHome(
                   "images/mnsg.png",
@@ -85,8 +101,8 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                   35,
                   "/mnsg",
                   "Mensagens em Real-Time",
-                  "A mensagem de Real-Time, informando o pagamento efetuado, é enviada pela EGR à Empresa."+
-                    "Contudo, o sistema exige também que a empresa envie uma mensagem de resposta à EGR.",
+                  "A mensagem de Real-Time, informando o pagamento efetuado, é enviada pela EGR à Empresa." +
+                      "Contudo, o sistema exige também que a empresa envie uma mensagem de resposta à EGR.",
                 ),
               ],
             ),

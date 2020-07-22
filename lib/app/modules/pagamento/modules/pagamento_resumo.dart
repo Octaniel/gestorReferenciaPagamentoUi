@@ -1,6 +1,6 @@
 class PagamentoResumo {
   String data;
-  int valor;
+  double valor;
   String referencia;
   String nomeFicheiroMeps;
   String dataInsercaoMensagem;

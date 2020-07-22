@@ -9,50 +9,32 @@ part of 'home_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$HomeController on _HomeControllerBase, Store {
-  final _$valueAtom = Atom(name: '_HomeControllerBase.value');
+  final _$errosInternoAtom = Atom(name: '_HomeControllerBase.errosInterno');
 
   @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
+  ObservableList<ErroInterno> get errosInterno {
+    _$errosInternoAtom.reportRead();
+    return super.errosInterno;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
+  set errosInterno(ObservableList<ErroInterno> value) {
+    _$errosInternoAtom.reportWrite(value, super.errosInterno, () {
+      super.errosInterno = value;
     });
   }
 
-  final _$_HomeControllerBaseActionController =
-      ActionController(name: '_HomeControllerBase');
+  final _$readErroAsyncAction = AsyncAction('_HomeControllerBase.readErro');
 
   @override
-  void add(int i) {
-    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
-        name: '_HomeControllerBase.add');
-    try {
-      return super.add(i);
-    } finally {
-      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void increment() {
-    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
-        name: '_HomeControllerBase.increment');
-    try {
-      return super.increment();
-    } finally {
-      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
-    }
+  Future<List<dynamic>> readErro() {
+    return _$readErroAsyncAction.run(() => super.readErro());
   }
 
   @override
   String toString() {
     return '''
-value: ${value}
+errosInterno: ${errosInterno}
     ''';
   }
 }
