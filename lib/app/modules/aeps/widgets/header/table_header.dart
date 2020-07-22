@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/aeps/aeps_controller.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../widgets/data_table_aeps.dart';
 
@@ -21,6 +22,7 @@ class _TableHeaderState extends ModularState<TableHeader, AepsController> {
           return CircularProgressIndicator();
         } else {
           return Observer(builder: (_){
+            final f = new DateFormat('dd/MM/yyyy');
               return DataTable(
                 columns: <DataColumn>[
                   dataColumn("Entidade"),
@@ -40,7 +42,7 @@ class _TableHeaderState extends ModularState<TableHeader, AepsController> {
                         dataCell(name.instituicaoDestino),
                         dataCell(name.dataProcessamento),
                         dataCell(name.ultimoFicheiroEmviado),
-                        dataCell(name.dataEnvio),
+                        dataCell(f.format(DateTime.parse(name.dataEnvio))),
                         dataCell("${name.idPorDia}"),
                       ],
                     );

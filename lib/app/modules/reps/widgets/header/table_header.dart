@@ -22,7 +22,7 @@ class _TableHeaderState extends ModularState<TableHeader, RepsController> {
           return CircularProgressIndicator();
         } else {
           return Observer(builder: (_){
-            final f = new DateFormat('dd-MM-yyyy hh:mm');
+            final f = new DateFormat('dd/MM/yyyy hh:mm:ss');
               return DataTable(
                 columns: <DataColumn>[
                   dataColumn("Id. Instituição\nOrigem"),

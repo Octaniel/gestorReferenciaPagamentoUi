@@ -1,7 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/aeps/aeps_module.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/meps/meps_module.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/mnsg/mnsg_module.dart';
+import 'package:gestorReferenciaPagamentoUi/app/modules/pagamento/pagamento_module.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/reps/reps_module.dart';
+import 'package:gestorReferenciaPagamentoUi/app/res/static.dart';
 
 import 'app_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -13,6 +16,9 @@ class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
         Bind((i) => AppController()),
+        Bind((i) => Dio(BaseOptions(
+          baseUrl: url
+        ))),
       ];
 
   @override
@@ -22,6 +28,7 @@ class AppModule extends MainModule {
         Router("/reps", module: RepsModule()),
         Router("/meps", module: MepsModule()),
         Router("/mnsg", module: MnsgModule()),
+        Router("/pagamento", module: PagamentoModule()),
       ];
 
   @override

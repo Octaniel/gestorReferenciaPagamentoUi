@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/reps/models/reps_detail_resumo.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/reps/models/reps_header_trailer.dart';
+import 'package:gestorReferenciaPagamentoUi/app/res/static.dart';
 import 'package:http/http.dart' as http;
 import 'package:mobx/mobx.dart';
 
@@ -12,7 +13,7 @@ class RepsRepository extends Disposable {
 
   Future<List> readDetail(int page, String codigoErro) async {
     final response =
-    await dio.get("https://gestoreferencia-pagamento-api.herokuapp.com/reps/detail?page=$page&size=5&codigoErro=$codigoErro",
+    await dio.get("${url}reps/detail?page=$page&size=5&codigoErro=$codigoErro",
           options: Options(
             contentType: "application/json",
           ));
@@ -36,7 +37,7 @@ class RepsRepository extends Disposable {
 
   Future<List> readHeader(int page, String entidade) async {
     final response =
-    await http.get("https://gestoreferencia-pagamento-api.herokuapp.com/reps/header?page=$page&size=5&entidade=$entidade",headers: <String,String>{
+    await http.get("${url}reps/header?page=$page&size=5&entidade=$entidade",headers: <String,String>{
       "Content-Type":"application/json"
     });
     if(response.statusCode==200){

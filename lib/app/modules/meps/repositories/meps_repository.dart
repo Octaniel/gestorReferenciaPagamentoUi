@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/meps/models/meps_detail_resumo.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/meps/models/meps_header_trailer.dart';
+import 'package:gestorReferenciaPagamentoUi/app/res/static.dart';
 import 'package:mobx/mobx.dart';
 
 class MepsRepository extends Disposable {
@@ -10,7 +11,7 @@ class MepsRepository extends Disposable {
 
   Future<List> readDetail(int page, String referencia) async {
     final response =
-    await dio.get("https://gestoreferencia-pagamento-api.herokuapp.com/meps/detail?page=$page&size=5&referencia=$referencia",
+    await dio.get("${url}meps/detail?page=$page&size=5&referencia=$referencia",
     options: Options(
       contentType: "application/json"
     ));
@@ -34,7 +35,7 @@ class MepsRepository extends Disposable {
 
   Future<List> readHeader(int page, String entidade) async {
     final response =
-    await dio.get("https://gestoreferencia-pagamento-api.herokuapp.com/meps/header?page=$page&size=5&entidade=$entidade",
+    await dio.get("${url}meps/header?page=$page&size=5&entidade=$entidade",
     options: Options(
       contentType: "application/json"
     ));

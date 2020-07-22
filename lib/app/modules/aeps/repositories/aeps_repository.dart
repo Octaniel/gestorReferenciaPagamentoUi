@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/aeps/models/FicheiroDetalheClienteResumo.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/aeps/models/FicheiroHeaderCliente.dart';
+import 'package:gestorReferenciaPagamentoUi/app/res/static.dart';
 import 'package:http/http.dart' as http;
 import 'package:mobx/mobx.dart';
 
@@ -10,7 +11,7 @@ class AepsRepository extends Disposable {
 
   Future<List> read(int page, String referencia) async {
     final response =
-    await http.get("https://gestoreferencia-pagamento-api.herokuapp.com/modeloFicheiro?page=$page&size=5&referencia=$referencia",headers: <String,String>{
+    await http.get("${url}modeloFicheiro?page=$page&size=5&referencia=$referencia",headers: <String,String>{
       "Content-Type":"application/json"
     });
     if(response.statusCode==200){
@@ -34,7 +35,7 @@ class AepsRepository extends Disposable {
 
   Future<List> readHeader(int page, String entidade) async {
     final response =
-    await http.get("https://gestoreferencia-pagamento-api.herokuapp.com/modeloFicheiro/headerCliente?page=$page&size=5&entidade=$entidade",headers: <String,String>{
+    await http.get("${url}modeloFicheiro/headerCliente?page=$page&size=5&entidade=$entidade",headers: <String,String>{
       "Content-Type":"application/json"
     });
     if(response.statusCode==200){

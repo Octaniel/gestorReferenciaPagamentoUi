@@ -21,8 +21,6 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
     "Pagamentos",
   ];
 
-  String _value;
-
   @override
   void dispose() {
     _animationController.dispose();
@@ -35,7 +33,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
       appBar: AppBar(
         backgroundColor: Color(0xFF2d363b),
         title: Text("Gestor de Referencia de Pagamento"),
-        actions: [DropDown(_list, _value)],
+        actions: [DropDown(_list)],
         elevation: 10,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
@@ -50,6 +48,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
+                Padding(padding: EdgeInsets.only(left: 70)),
                 CardHome(
                   "images/aeps.png",
                   36,

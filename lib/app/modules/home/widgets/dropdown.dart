@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class DropDown extends StatefulWidget {
-  DropDown(this._list, this._value);
+  DropDown(this._list);
 
   List<String> _list;
-  String _value;
 
   @override
   _DropDownState createState() => _DropDownState();
@@ -48,8 +48,8 @@ class _DropDownState extends State<DropDown> {
             ],
           ),
         ),
-        onChanged: (banco) {
-
+        onChanged: (v) {
+          Modular.to.pushNamed("/pagamento");
         },
       ),
     );
