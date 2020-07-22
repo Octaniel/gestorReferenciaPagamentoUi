@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:gestorReferenciaPagamentoUi/app/modules/aeps/widgets/detail/pagina_detail.dart';
-import 'package:gestorReferenciaPagamentoUi/app/modules/aeps/widgets/detail/table_detail.dart';
+import 'package:gestorReferenciaPagamentoUi/app/modules/meps/widgets/header/pagina_header.dart';
+import 'package:gestorReferenciaPagamentoUi/app/modules/meps/widgets/header/table_header.dart';
 
-import '../../aeps_controller.dart';
+import '../../meps_controller.dart';
 
-class PaginatedDataTableDetail extends StatefulWidget {
+class PaginatedDataTableMepsHeader extends StatefulWidget {
   @override
-  _PaginatedDataTableDetailState createState() =>
-      _PaginatedDataTableDetailState();
+  _PaginatedDataTableMepsHeaderState createState() =>
+      _PaginatedDataTableMepsHeaderState();
 }
 
-class _PaginatedDataTableDetailState
-    extends ModularState<PaginatedDataTableDetail, AepsController> {
+class _PaginatedDataTableMepsHeaderState
+    extends ModularState<PaginatedDataTableMepsHeader, MepsController> {
 
   @override
   void initState() {
@@ -37,7 +37,7 @@ class _PaginatedDataTableDetailState
             child: Column(
               children: [
                 Text(
-                  "Detail",
+                  "Header",
                   style: TextStyle(fontSize: 32),
                 ),
                 Container(
@@ -46,21 +46,21 @@ class _PaginatedDataTableDetailState
                   child: TextField(
                     onSubmitted: (v) {
                       controller.dados = v;
-                      controller.read();
+                      controller.readHeader();
                     },
                     decoration: InputDecoration(
                         prefixIcon: Container(
                           margin: EdgeInsets.only(bottom: 5),
                           child: Icon(Icons.search),
                         ),
-                        hintText: "Referencia",
+                        hintText: "Entidade",
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20))),
                   ),
                 ),
-                TableDetail(),
+                TableHeader(),
                 Padding(padding: EdgeInsets.only(top: 10)),
-                PaginaDetail(),
+                PaginaHeader(),
               ],
             ),
           ),

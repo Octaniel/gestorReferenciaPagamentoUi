@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:gestorReferenciaPagamentoUi/app/modules/aeps/aeps_controller.dart';
+import 'package:gestorReferenciaPagamentoUi/app/widgets/data_table_aeps.dart';
+import 'package:intl/intl.dart';
 
-import '../../../../widgets/data_table_aeps.dart';
+import '../../meps_controller.dart';
 
 class TableHeader extends StatefulWidget {
   @override
   _TableHeaderState createState() => _TableHeaderState();
 }
 
-class _TableHeaderState extends ModularState<TableHeader, AepsController> {
+class _TableHeaderState extends ModularState<TableHeader, MepsController> {
 
   @override
   Widget build(BuildContext context) {
@@ -21,27 +22,30 @@ class _TableHeaderState extends ModularState<TableHeader, AepsController> {
           return CircularProgressIndicator();
         } else {
           return Observer(builder: (_){
+            final f = new DateFormat('dd-MM-yyyy hh:mm');
               return DataTable(
                 columns: <DataColumn>[
+                  dataColumn("Id. Instituição\nOrigem"),
+                  dataColumn("Id. Instituição\nDestino"),
+                  dataColumn("Data do\nprocessamento"),
+                  dataColumn("Id. último\nficheiro"),
                   dataColumn("Entidade"),
-                  dataColumn("Instituição origem"),
-                  dataColumn("Instituição destino"),
-                  dataColumn("Data processamento"),
-                  dataColumn("Ultimo ficheiro enviado"),
-                  dataColumn("Data envio"),
-                  dataColumn("Id por dia"),
+                  dataColumn("Montante total\ntransações"),
+                  dataColumn("Total tarifação"),
+                  dataColumn("Taxa IVA"),
                 ],
-                rows: controller.ficheirHeaderClientes.map(
+                rows: controller.mepsHeadersTrailers.map(
                       (name) {
                     return DataRow(
                       cells: [
-                        dataCell(name.entidade),
                         dataCell(name.instituicaoOrigem),
                         dataCell(name.instituicaoDestino),
                         dataCell(name.dataProcessamento),
-                        dataCell(name.ultimoFicheiroEmviado),
-                        dataCell(name.dataEnvio),
-                        dataCell("${name.idPorDia}"),
+                        dataCell(name.identificacaoUltimoFicheiro),
+                        dataCell(name.entidade),
+                        dataCell(name.montanteTotalTransacoes),
+                        dataCell(name.totalTarifacao),
+                        dataCell(name.taxaIva),
                       ],
                     );
                   },

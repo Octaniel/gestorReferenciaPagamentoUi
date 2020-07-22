@@ -1,7 +1,6 @@
-import 'repositories/meps_repository.dart';
 import 'meps_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'meps_page.dart';
+import 'pages/meps_page.dart';
 
 class MepsModule extends ChildModule {
   @override

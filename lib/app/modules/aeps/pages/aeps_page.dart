@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:gestorReferenciaPagamentoUi/app/modules/aeps/widgets/butao_nav_bar.dart';
-import 'package:gestorReferenciaPagamentoUi/app/modules/aeps/widgets/detail/paginated_data_table_detail.dart';
-import 'package:gestorReferenciaPagamentoUi/app/modules/aeps/widgets/header/paginated_data_table_header.dart';
+import 'package:gestorReferenciaPagamentoUi/app/modules/aeps/widgets/butao_nav_bar_aeps.dart';
+import 'package:gestorReferenciaPagamentoUi/app/modules/aeps/widgets/detail/paginated_data_table_aeps_detail.dart';
+import 'package:gestorReferenciaPagamentoUi/app/modules/aeps/widgets/header/paginated_data_table_aeps_header.dart';
 
 import '../aeps_controller.dart';
 
@@ -49,12 +49,12 @@ class _AepsPageState extends ModularState<AepsPage, AepsController> {
             setState(() => controller.currentIndex = index);
           },
           children: <Widget>[
-            PaginatedDataTableDetail(),
-            PaginatedDataTableHeader(),
+            PaginatedDataTableAepsDetail(),
+            PaginatedDataTableAepsHeader(),
           ],
         ),
       ),
-      bottomNavigationBar: ButaoNavBar(),
+      bottomNavigationBar: ButaoNavBarAeps(),
     );
   }
 }

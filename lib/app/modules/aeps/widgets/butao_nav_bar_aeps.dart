@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/aeps/aeps_controller.dart';
 
-class ButaoNavBar extends StatefulWidget {
+class ButaoNavBarAeps extends StatefulWidget {
   @override
-  _ButaoNavBarState createState() => _ButaoNavBarState();
+  _ButaoNavBarAepsState createState() => _ButaoNavBarAepsState();
 }
 
-class _ButaoNavBarState extends ModularState<ButaoNavBar,AepsController> {
+class _ButaoNavBarAepsState extends ModularState<ButaoNavBarAeps,AepsController> {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -20,7 +20,7 @@ class _ButaoNavBarState extends ModularState<ButaoNavBar,AepsController> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _flatButao("images/details.png", "Details",0),
-          Padding(padding: EdgeInsets.only(left: 150)),
+          Padding(padding: EdgeInsets.only(left: 137)),
           _flatButao("images/header.png", "Headers",1,),
         ],
       ),

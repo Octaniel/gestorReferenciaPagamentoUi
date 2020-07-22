@@ -3,7 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/aeps/aeps_controller.dart';
 
-import '../data_table_aeps.dart';
+import '../../../../widgets/data_table_aeps.dart';
 
 class TableDetail extends StatefulWidget {
   @override

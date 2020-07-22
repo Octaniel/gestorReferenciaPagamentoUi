@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:gestorReferenciaPagamentoUi/app/modules/aeps/widgets/header/pagina_header.dart';
-import 'package:gestorReferenciaPagamentoUi/app/modules/aeps/widgets/header/table_header.dart';
+import 'package:gestorReferenciaPagamentoUi/app/modules/reps/widgets/header/pagina_header.dart';
+import 'package:gestorReferenciaPagamentoUi/app/modules/reps/widgets/header/table_header.dart';
 
-import '../../aeps_controller.dart';
+import '../../reps_controller.dart';
 
-class PaginatedDataTableHeader extends StatefulWidget {
+class PaginatedDataTableRepsHeader extends StatefulWidget {
   @override
-  _PaginatedDataTableHeaderState createState() =>
-      _PaginatedDataTableHeaderState();
+  _PaginatedDataTableRepsHeaderState createState() =>
+      _PaginatedDataTableRepsHeaderState();
 }
 
-class _PaginatedDataTableHeaderState
-    extends ModularState<PaginatedDataTableHeader, AepsController> {
+class _PaginatedDataTableRepsHeaderState
+    extends ModularState<PaginatedDataTableRepsHeader, RepsController> {
 
   @override
   void initState() {
