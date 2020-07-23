@@ -39,6 +39,7 @@ class _CardHomeState extends ModularState<CardHome, HomeController> {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           child: FlatButton(
             onPressed: () {
+              controller.readErro();
               Modular.to.pushNamed(widget._routeName);
             },
             child: Column(

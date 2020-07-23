@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/aeps/aeps_module.dart';
+import 'package:gestorReferenciaPagamentoUi/app/modules/erro_interno/erro_interno_module.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/meps/meps_module.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/mnsg/mnsg_module.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/pagamento/pagamento_module.dart';
@@ -29,6 +30,7 @@ class AppModule extends MainModule {
         Router("/meps", module: MepsModule()),
         Router("/mnsg", module: MnsgModule()),
         Router("/pagamento", module: PagamentoModule()),
+        Router("/erroInterno", module: ErroInternoModule()),
       ];
 
   @override

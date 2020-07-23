@@ -11,12 +11,28 @@ abstract class _HomeControllerBase with Store {
   _HomeControllerBase(this.repository);
 
   @observable
+  bool apNot = false;
+
+  @observable
+  int v = 0;
+
+  @observable
   ObservableList<ErroInterno> errosInterno;
 
   @action
   Future<List> readErro()async{
-    var js = await repository.readErro();
-    errosInterno = js;
+    var js = await repository.readErroAll();
+    errosInterno = js.elementAt(1);
+    v = js.elementAt(0);
+    print(errosInterno.length);
     return js;
+  }
+  @action
+  Future<bool> atualizarParatrue(int id) async {
+    var atualizarParatrue = await repository.atualizarParatrue(id);
+     if(atualizarParatrue){
+       readErro();
+     }
+     return atualizarParatrue;
   }
 }

@@ -26,6 +26,41 @@ class HomeRepository extends Disposable {
     return produtoList;
   }
 
+  Future<List> readErroAll() async {
+    final response =
+    await dio.get("erro/all",
+        options: Options(
+            contentType: "application/json"
+        ));
+    if(response.statusCode==200){
+      List listReturn = List();
+      int v = 0;
+      ObservableList<ErroInterno> produtoList = ObservableList();
+      response.data.forEach((f){
+        var cliente = ErroInterno.fromJson(f);
+        if(!cliente.visto) v = v+1;
+        produtoList.add(cliente);
+      });
+      listReturn.insert(0, v);
+      listReturn.insert(1, produtoList);
+      return listReturn;
+    }
+    ObservableList<ErroInterno> produtoList = ObservableList();
+    return produtoList;
+  }
+
+  Future<bool> atualizarParatrue(int id) async {
+    final response =
+    await dio.put("erro/$id",
+        options: Options(
+            contentType: "application/json"
+        ));
+    if(response.statusCode==200){
+      return true;
+    }
+    return false;
+  }
+
   //dispose will be called automatically
   @override
   void dispose() {}
