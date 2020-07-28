@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/reps/widgets/butao_nav_bar_reps.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/reps/widgets/detail/paginated_data_table_reps_detail.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/reps/widgets/header/paginated_data_table_reps_header.dart';
+import 'package:gestorReferenciaPagamentoUi/app/res/static.dart';
+import 'package:gestorReferenciaPagamentoUi/app/widgets/bot_nav_bar.dart';
 import '../reps_controller.dart';
 
 class RepsPage extends StatefulWidget {
@@ -31,27 +34,93 @@ class _RepsPageState extends ModularState<RepsPage, RepsController> {
   Widget build(BuildContext context) {
     controller.size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xFF2d363b),
-        title: Text("Ficheiro de Retorno"),
-        elevation: 10,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
+      backgroundColor: background,
+      body: Column(
+        children: [
+          appbar(),
+          Container(
+            height: controller.size.height - 159,
+            child: SizedBox.expand(
+              child: PageView(
+                controller: controller.pageController,
+                onPageChanged: (index) {
+                  setState(() => controller.currentIndex = index);
+                },
+                children: <Widget>[
+                  PaginatedDataTableRepsDetail(),
+                  PaginatedDataTableRepsHeader(),
+                ],
+              ),
+            ),
+          )
+        ],
       ),
-      body: SizedBox.expand(
-        child: PageView(
-          controller: controller.pageController,
-          onPageChanged: (index) {
-             controller.currentIndex = index;
-          },
-          children: <Widget>[
-            PaginatedDataTableRepsDetail(),
-            PaginatedDataTableRepsHeader(),
-          ],
-        ),
+      bottomNavigationBar: bnb(),
+    );
+  }
+
+  bnb(){
+    return Container(
+      height: 109,
+      child: Column(
+        children: [
+          ButaoNavBarReps(),
+          Padding(padding: EdgeInsets.only(top: 10)),
+          BotNavBar()
+        ],
       ),
-      bottomNavigationBar: ButaoNavBarReps(),
+    );
+  }
+
+  appbar() {
+    return Container(
+      height: 50,
+      child: Row(
+        children: [
+          IconButton(
+            icon: FaIcon(FontAwesomeIcons.chevronLeft),
+            onPressed: () {
+              Modular.to.pop();
+            },
+          ),
+          Padding(padding: EdgeInsets.only(left: 597)),
+          Text(
+            "REPS",
+            style: TextStyle(
+                fontWeight: FontWeight.bold, fontSize: 23, color: textColor),
+          ),
+          Padding(padding: EdgeInsets.only(left: 598.5)),
+          Stack(
+            children: [
+              IconButton(
+                icon: Icon(Icons.notifications_none),
+                onPressed: () {},
+              ),
+              Container(
+                width: 13,
+                height: 13,
+                margin: EdgeInsets.only(left: 25, top: 10),
+                decoration: ShapeDecoration(
+                  color: Color(0xFF1860DE),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(40),
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    "3",
+                    style: TextStyle(
+                      fontSize: 10,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

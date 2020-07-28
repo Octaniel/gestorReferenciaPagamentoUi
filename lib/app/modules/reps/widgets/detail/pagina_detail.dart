@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/reps/reps_controller.dart';
 
 class PaginaDetail extends StatefulWidget {
@@ -8,86 +9,92 @@ class PaginaDetail extends StatefulWidget {
   _PaginaDetailState createState() => _PaginaDetailState();
 }
 
-class _PaginaDetailState extends ModularState<PaginaDetail,RepsController> {
+class _PaginaDetailState extends ModularState<PaginaDetail, RepsController> {
   @override
   Widget build(BuildContext context) {
-    return Observer(builder: (_){
-      return controller.repsDetailsResumo != null && controller.qpagina>0
+    return Observer(builder: (_) {
+      return controller.repsDetailsResumo != null && controller.qpagina > 0
           ? Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          FlatButton(
-            onPressed: controller.page > 1
-                ? () {
-              controller.setPage(1);
-              controller.readDetail();
-            }
-                : null,
-            child: Icon(
-              Icons.arrow_back,
-              color: controller.page == 1
-                  ? Colors.black87.withOpacity(.5)
-                  : Colors.black87,
-            ),
-          ),
-          FlatButton(
-            onPressed: controller.page > 1
-                ? () {
-              controller.setPage(controller.page - 1);
-              controller.readDetail();
-            }
-                : null,
-            child: Icon(
-              Icons.arrow_back_ios,
-              color: controller.page == 1
-                  ? Colors.black87.withOpacity(.5)
-                  : Colors.black87,
-            ),
-          ),
-          Container(
-            height: 30,
-            width: 80,
-            decoration: ShapeDecoration(
-              color: Colors.green,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-            child: Center(
-                child: Text(
-                    "${controller.page} de ${controller.qpagina}")),
-          ),
-          FlatButton(
-            onPressed: controller.page < controller.qpagina
-                ? () {
-              controller.setPage(controller.page + 1);
-              controller.readDetail();
-            }
-                : null,
-            child: Icon(
-              Icons.arrow_forward_ios,
-              color: controller.page == controller.qpagina
-                  ? Colors.black87.withOpacity(.5)
-                  : Colors.black87,
-            ),
-          ),
-          FlatButton(
-            onPressed: controller.page < controller.qpagina
-                ? () {
-              controller.setPage(controller.qpagina);
-              controller.readDetail();
-            }
-                : null,
-            child: Icon(
-              Icons.arrow_forward,
-              color: controller.page == controller.qpagina
-                  ? Colors.black87.withOpacity(.5)
-                  : Colors.black87,
-            ),
-          ),
-        ],
-      )
-          : controller.repsDetailsResumo != null && controller.qpagina==0?Text("Nenhum Detail Encontrado"): Text("");
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                InkWell(
+                  onTap: controller.page > 1
+                      ? () {
+                          controller.setPage(1);
+                          controller.readDetail();
+                        }
+                      : null,
+                  child: FaIcon(
+                    FontAwesomeIcons.angleDoubleLeft,
+                    color: controller.page == 1
+                        ? Colors.black87.withOpacity(.5)
+                        : Colors.black87,
+                  ),
+                ),
+                Padding(padding: EdgeInsets.only(left: 10)),
+                InkWell(
+                  onTap: controller.page > 1
+                      ? () {
+                          controller.setPage(controller.page - 1);
+                          controller.readDetail();
+                        }
+                      : null,
+                  child: FaIcon(
+                    FontAwesomeIcons.angleLeft,
+                    color: controller.page == 1
+                        ? Colors.black87.withOpacity(.5)
+                        : Colors.black87,
+                  ),
+                ),
+                Padding(padding: EdgeInsets.only(left: 10)),
+                Container(
+                  height: 25,
+                  width: 70,
+                  decoration: ShapeDecoration(
+                    color: Colors.green,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: Center(
+                      child:
+                          Text("${controller.page} de ${controller.qpagina}")),
+                ),
+                Padding(padding: EdgeInsets.only(left: 10)),
+                InkWell(
+                  onTap: controller.page < controller.qpagina
+                      ? () {
+                          controller.setPage(controller.page + 1);
+                          controller.readDetail();
+                        }
+                      : null,
+                  child: FaIcon(
+                    FontAwesomeIcons.angleRight,
+                    color: controller.page == controller.qpagina
+                        ? Colors.black87.withOpacity(.5)
+                        : Colors.black87,
+                  ),
+                ),
+                Padding(padding: EdgeInsets.only(left: 10)),
+                InkWell(
+                  onTap: controller.page < controller.qpagina
+                      ? () {
+                          controller.setPage(controller.qpagina);
+                          controller.readDetail();
+                        }
+                      : null,
+                  child: FaIcon(
+                    FontAwesomeIcons.angleDoubleRight,
+                    color: controller.page == controller.qpagina
+                        ? Colors.black87.withOpacity(.5)
+                        : Colors.black87,
+                  ),
+                ),
+              ],
+            )
+          : controller.repsDetailsResumo != null && controller.qpagina == 0
+              ? Text("Nenhum Detail Encontrado")
+              : Text("");
     });
-   }
+  }
 }

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:gestorReferenciaPagamentoUi/app/modules/home/models/erro_interno.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/home/repositories/home_repository.dart';
 import 'package:mobx/mobx.dart';
@@ -12,6 +14,12 @@ abstract class _HomeControllerBase with Store {
 
   @observable
   bool apNot = false;
+
+  @observable
+  Size size;
+
+  @observable
+  bool isDrawer = true;
 
   @observable
   int v = 0;

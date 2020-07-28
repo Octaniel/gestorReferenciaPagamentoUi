@@ -24,6 +24,36 @@ mixin _$HomeController on _HomeControllerBase, Store {
     });
   }
 
+  final _$isDrawerAtom = Atom(name: '_HomeControllerBase.isDrawer');
+
+  @override
+  bool get isDrawer {
+    _$isDrawerAtom.reportRead();
+    return super.isDrawer;
+  }
+
+  @override
+  set isDrawer(bool value) {
+    _$isDrawerAtom.reportWrite(value, super.isDrawer, () {
+      super.isDrawer = value;
+    });
+  }
+
+  final _$vAtom = Atom(name: '_HomeControllerBase.v');
+
+  @override
+  int get v {
+    _$vAtom.reportRead();
+    return super.v;
+  }
+
+  @override
+  set v(int value) {
+    _$vAtom.reportWrite(value, super.v, () {
+      super.v = value;
+    });
+  }
+
   final _$errosInternoAtom = Atom(name: '_HomeControllerBase.errosInterno');
 
   @override
@@ -46,10 +76,21 @@ mixin _$HomeController on _HomeControllerBase, Store {
     return _$readErroAsyncAction.run(() => super.readErro());
   }
 
+  final _$atualizarParatrueAsyncAction =
+      AsyncAction('_HomeControllerBase.atualizarParatrue');
+
+  @override
+  Future<bool> atualizarParatrue(int id) {
+    return _$atualizarParatrueAsyncAction
+        .run(() => super.atualizarParatrue(id));
+  }
+
   @override
   String toString() {
     return '''
 apNot: ${apNot},
+isDrawer: ${isDrawer},
+v: ${v},
 errosInterno: ${errosInterno}
     ''';
   }

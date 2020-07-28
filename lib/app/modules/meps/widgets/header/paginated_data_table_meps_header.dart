@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:gestorReferenciaPagamentoUi/app/modules/meps/widgets/bara_pesquisa_meps.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/meps/widgets/header/pagina_header.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/meps/widgets/header/table_header.dart';
 
@@ -13,7 +14,6 @@ class PaginatedDataTableMepsHeader extends StatefulWidget {
 
 class _PaginatedDataTableMepsHeaderState
     extends ModularState<PaginatedDataTableMepsHeader, MepsController> {
-
   @override
   void initState() {
     controller.dados = "";
@@ -31,38 +31,24 @@ class _PaginatedDataTableMepsHeaderState
         child: Container(
           width: double.infinity,
           height: double.infinity,
-          child: Card(
-            color: Colors.white,
-            elevation: 10,
-            child: Column(
-              children: [
-                Text(
-                  "Header",
-                  style: TextStyle(fontSize: 32),
+          child: Column(
+            children: [
+              BaraPesquisaMeps("Entidade", true),
+              Padding(padding: EdgeInsets.only(top: 10)),
+              Container(
+                decoration: ShapeDecoration(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10))),
+                child: Column(
+                  children: [
+                    TableHeader(),
+                    Padding(padding: EdgeInsets.only(top: 10)),
+                    PaginaHeader(),
+                  ],
                 ),
-                Container(
-                  width: 300,
-                  height: 50,
-                  child: TextField(
-                    onSubmitted: (v) {
-                      controller.dados = v;
-                      controller.readHeader();
-                    },
-                    decoration: InputDecoration(
-                        prefixIcon: Container(
-                          margin: EdgeInsets.only(bottom: 5),
-                          child: Icon(Icons.search),
-                        ),
-                        hintText: "Entidade",
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20))),
-                  ),
-                ),
-                TableHeader(),
-                Padding(padding: EdgeInsets.only(top: 10)),
-                PaginaHeader(),
-              ],
-            ),
+              ),
+            ],
           ),
         ));
   }

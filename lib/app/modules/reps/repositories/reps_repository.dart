@@ -13,7 +13,7 @@ class RepsRepository extends Disposable {
 
   Future<List> readDetail(int page, String codigoErro) async {
     final response =
-    await dio.get("${url}reps/detail?page=$page&size=5&codigoErro=$codigoErro",
+    await dio.get("${url}reps/detail?page=$page&size=6&codigoErro=$codigoErro",
           options: Options(
             contentType: "application/json",
           ));
@@ -37,7 +37,7 @@ class RepsRepository extends Disposable {
 
   Future<List> readHeader(int page, String entidade) async {
     final response =
-    await http.get("${url}reps/header?page=$page&size=5&entidade=$entidade",headers: <String,String>{
+    await http.get("${url}reps/header?page=$page&size=6&entidade=$entidade",headers: <String,String>{
       "Content-Type":"application/json"
     });
     if(response.statusCode==200){

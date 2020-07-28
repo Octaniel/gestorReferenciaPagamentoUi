@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import '../erro_interno_controller.dart';
+import 'package:gestorReferenciaPagamentoUi/app/modules/erro_interno/erro_interno_controller.dart';
 
 class ErroInternoPage extends StatefulWidget {
   final String title;

@@ -11,7 +11,7 @@ class MepsRepository extends Disposable {
 
   Future<List> readDetail(int page, String referencia) async {
     final response =
-    await dio.get("${url}meps/detail?page=$page&size=5&referencia=$referencia",
+    await dio.get("${url}meps/detail?page=$page&size=6&referencia=$referencia",
     options: Options(
       contentType: "application/json"
     ));
@@ -35,7 +35,7 @@ class MepsRepository extends Disposable {
 
   Future<List> readHeader(int page, String entidade) async {
     final response =
-    await dio.get("${url}meps/header?page=$page&size=5&entidade=$entidade",
+    await dio.get("${url}meps/header?page=$page&size=6&entidade=$entidade",
     options: Options(
       contentType: "application/json"
     ));
