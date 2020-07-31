@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/mnsg/mnsg_controller.dart';
 
 class PaginaResponse extends StatefulWidget {
@@ -16,37 +17,39 @@ class _PaginaResponseState extends ModularState<PaginaResponse,MnsgController> {
           ? Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          FlatButton(
-            onPressed: controller.pageResponse > 1
+          InkWell(
+            onTap: controller.pageResponse > 1
                 ? () {
               controller.pageResponse = 1;
               controller.readResponse();
             }
                 : null,
-            child: Icon(
-              Icons.arrow_back,
+            child: FaIcon(
+              FontAwesomeIcons.angleDoubleLeft,
               color: controller.pageResponse == 1
                   ? Colors.black87.withOpacity(.5)
                   : Colors.black87,
             ),
           ),
-          FlatButton(
-            onPressed: controller.pageResponse > 1
+          Padding(padding: EdgeInsets.only(left: 10)),
+          InkWell(
+            onTap: controller.pageResponse > 1
                 ? () {
               controller.pageResponse = controller.pageResponse - 1;
               controller.readResponse();
             }
                 : null,
-            child: Icon(
-              Icons.arrow_back_ios,
+            child: FaIcon(
+              FontAwesomeIcons.angleLeft,
               color: controller.pageResponse == 1
                   ? Colors.black87.withOpacity(.5)
                   : Colors.black87,
             ),
           ),
+          Padding(padding: EdgeInsets.only(left: 10)),
           Container(
-            height: 30,
-            width: 80,
+            height: 25,
+            width: 70,
             decoration: ShapeDecoration(
               color: Colors.green,
               shape: RoundedRectangleBorder(
@@ -57,29 +60,31 @@ class _PaginaResponseState extends ModularState<PaginaResponse,MnsgController> {
                 child: Text(
                     "${controller.pageResponse} de ${controller.qpaginaResponse}")),
           ),
-          FlatButton(
-            onPressed: controller.pageResponse < controller.qpaginaResponse
+          Padding(padding: EdgeInsets.only(left: 10)),
+          InkWell(
+            onTap: controller.pageResponse < controller.qpaginaResponse
                 ? () {
               controller.pageResponse =controller.pageResponse + 1;
               controller.readResponse();
             }
                 : null,
-            child: Icon(
-              Icons.arrow_forward_ios,
+            child: FaIcon(
+              FontAwesomeIcons.angleRight,
               color: controller.pageResponse == controller.qpaginaResponse
                   ? Colors.black87.withOpacity(.5)
                   : Colors.black87,
             ),
           ),
-          FlatButton(
-            onPressed: controller.pageResponse < controller.qpaginaResponse
+          Padding(padding: EdgeInsets.only(left: 10)),
+          InkWell(
+            onTap: controller.pageResponse < controller.qpaginaResponse
                 ? () {
               controller.pageResponse =controller.qpaginaResponse;
               controller.readResponse();
             }
                 : null,
-            child: Icon(
-              Icons.arrow_forward,
+            child: FaIcon(
+              FontAwesomeIcons.angleDoubleRight,
               color: controller.pageResponse == controller.qpaginaResponse
                   ? Colors.black87.withOpacity(.5)
                   : Colors.black87,

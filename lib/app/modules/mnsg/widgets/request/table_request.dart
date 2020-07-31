@@ -25,13 +25,13 @@ class _TableRequestState extends ModularState<TableRequest, MnsgController> {
             final f = new DateFormat('dd/MM/yyyy hh:mm:ss');
             return DataTable(
               columns: <DataColumn>[
-                dataColumn("Montante Pago"),
+                dataColumn("Montante\nPago"),
                 dataColumn("Referência"),
-                dataColumn("Aplic PDD"),
+                dataColumn("Aplic\nPDD"),
                 dataColumn("Código da\nMensagem"),
-                dataColumn("Data da\ntransação cliente"),
+                dataColumn("Data da\ntransação\ncliente"),
                 dataColumn("Hora do\nmovimento"),
-                dataColumn("Nr. Entidade"),
+                dataColumn("Nr. Entid."),
                 dataColumn("Data do\nregisto"),
               ],
               rows: controller.mensagensRealTimeResumo.map(

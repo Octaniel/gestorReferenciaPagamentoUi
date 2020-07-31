@@ -9,90 +9,94 @@ class PaginaDetail extends StatefulWidget {
   _PaginaDetailState createState() => _PaginaDetailState();
 }
 
-class _PaginaDetailState extends ModularState<PaginaDetail,AepsController> {
+class _PaginaDetailState extends ModularState<PaginaDetail, AepsController> {
   @override
   Widget build(BuildContext context) {
-    return Observer(builder: (_){
-      return controller.ficheirodetalheclientes != null && controller.qpagina>0
+    return Observer(builder: (_) {
+      return controller.ficheirodetalheclientes != null &&
+              controller.qpagina > 0
           ? Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          InkWell(
-            onTap: controller.page > 1
-                ? () {
-              controller.setPage(1);
-              controller.read();
-            }
-                : null,
-            child: FaIcon(
-              FontAwesomeIcons.angleDoubleLeft,
-              color: controller.page == 1
-                  ? Colors.black87.withOpacity(.5)
-                  : Colors.black87,
-            ),
-          ),
-          Padding(padding: EdgeInsets.only(left: 10)),
-          InkWell(
-            onTap: controller.page > 1
-                ? () {
-              controller.setPage(controller.page - 1);
-              controller.read();
-            }
-                : null,
-            child: FaIcon(
-              FontAwesomeIcons.angleLeft,
-              color: controller.page == 1
-                  ? Colors.black87.withOpacity(.5)
-                  : Colors.black87,
-            ),
-          ),
-          Padding(padding: EdgeInsets.only(left: 10)),
-          Container(
-            height: 25,
-            width: 70,
-            decoration: ShapeDecoration(
-              color: Colors.green,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-            child: Center(
-                child: Text(
-                    "${controller.page} de ${controller.qpagina}")),
-          ),
-          Padding(padding: EdgeInsets.only(left: 10)),
-          InkWell(
-            onTap: controller.page < controller.qpagina
-                ? () {
-              controller.setPage(controller.page + 1);
-              controller.read();
-            }
-                : null,
-            child: FaIcon(
-              FontAwesomeIcons.angleRight,
-              color: controller.page == controller.qpagina
-                  ? Colors.black87.withOpacity(.5)
-                  : Colors.black87,
-            ),
-          ),
-          Padding(padding: EdgeInsets.only(left: 10)),
-          InkWell(
-            onTap: controller.page < controller.qpagina
-                ? () {
-              controller.setPage(controller.qpagina);
-              controller.read();
-            }
-                : null,
-            child: FaIcon(
-              FontAwesomeIcons.angleDoubleRight,
-              color: controller.page == controller.qpagina
-                  ? Colors.black87.withOpacity(.5)
-                  : Colors.black87,
-            ),
-          ),
-        ],
-      )
-          : controller.ficheirodetalheclientes != null && controller.qpagina==0?Text("Nenhum Detail Encontrado"): Text("");
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                InkWell(
+                  onTap: controller.page > 1
+                      ? () {
+                          controller.setPage(1);
+                          controller.read();
+                        }
+                      : null,
+                  child: FaIcon(
+                    FontAwesomeIcons.angleDoubleLeft,
+                    color: controller.page == 1
+                        ? Colors.black87.withOpacity(.5)
+                        : Colors.black87,
+                  ),
+                ),
+                Padding(padding: EdgeInsets.only(left: 10)),
+                InkWell(
+                  onTap: controller.page > 1
+                      ? () {
+                          controller.setPage(controller.page - 1);
+                          controller.read();
+                        }
+                      : null,
+                  child: FaIcon(
+                    FontAwesomeIcons.angleLeft,
+                    color: controller.page == 1
+                        ? Colors.black87.withOpacity(.5)
+                        : Colors.black87,
+                  ),
+                ),
+                Padding(padding: EdgeInsets.only(left: 10)),
+                Container(
+                  height: 25,
+                  width: 70,
+                  decoration: ShapeDecoration(
+                    color: Colors.green,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: Center(
+                      child:
+                          Text("${controller.page} de ${controller.qpagina}")),
+                ),
+                Padding(padding: EdgeInsets.only(left: 10)),
+                InkWell(
+                  onTap: controller.page < controller.qpagina
+                      ? () {
+                          controller.setPage(controller.page + 1);
+                          controller.read();
+                        }
+                      : null,
+                  child: FaIcon(
+                    FontAwesomeIcons.angleRight,
+                    color: controller.page == controller.qpagina
+                        ? Colors.black87.withOpacity(.5)
+                        : Colors.black87,
+                  ),
+                ),
+                Padding(padding: EdgeInsets.only(left: 10)),
+                InkWell(
+                  onTap: controller.page < controller.qpagina
+                      ? () {
+                          controller.setPage(controller.qpagina);
+                          controller.read();
+                        }
+                      : null,
+                  child: FaIcon(
+                    FontAwesomeIcons.angleDoubleRight,
+                    color: controller.page == controller.qpagina
+                        ? Colors.black87.withOpacity(.5)
+                        : Colors.black87,
+                  ),
+                ),
+              ],
+            )
+          : controller.ficheirodetalheclientes != null &&
+                  controller.qpagina == 0
+              ? Text("Nenhum Detail Encontrado")
+              : Text("");
     });
-   }
+  }
 }

@@ -25,14 +25,14 @@ class _TableHeaderState extends ModularState<TableHeader, MepsController> {
             final f = new DateFormat('dd-MM-yyyy hh:mm');
               return DataTable(
                 columns: <DataColumn>[
-                  dataColumn("Id. Instituição\nOrigem"),
-                  dataColumn("Id. Instituição\nDestino"),
+                  dataColumn("Id. Institui.\nOrigem"),
+                  dataColumn("Id. Institui.\nDestino"),
                   dataColumn("Data do\nprocessamento"),
-                  dataColumn("Id. último\nficheiro"),
+                  dataColumn("Id. últi.\nficheiro"),
                   dataColumn("Entidade"),
                   dataColumn("Montante total\ntransações"),
-                  dataColumn("Total tarifação"),
-                  dataColumn("Taxa IVA"),
+                  dataColumn("Total\ntarifação"),
+                  dataColumn("Taxa\nIVA"),
                 ],
                 rows: controller.mepsHeadersTrailers.map(
                       (name) {

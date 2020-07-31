@@ -43,4 +43,12 @@ abstract class _HomeControllerBase with Store {
      }
      return atualizarParatrue;
   }
+  @action
+  Future<bool> atualizarTodosParatrue() async {
+    var atualizarParatrue = await repository.atualizarTodosParatrue();
+    if(atualizarParatrue){
+      readErro();
+    }
+    return atualizarParatrue;
+  }
 }

@@ -25,11 +25,11 @@ class _TableDetailState extends ModularState<TableDetail, AepsController> {
               columns: <DataColumn>[
                 dataColumn("Entidade"),
                 dataColumn("Referencia"),
-                dataColumn("Data inicio de pag."),
-                dataColumn("Data limite de pag."),
-                dataColumn("Montante min."),
-                dataColumn("Montante max."),
-                dataColumn("Codigo clie."),
+                dataColumn("Data inicio\nde pag."),
+                dataColumn("Data limite\nde pag."),
+                dataColumn("Montante\nminimo"),
+                dataColumn("Montante\nmaximo"),
+                dataColumn("Codigo do\ncliente"),
                 dataColumn("Status"),
               ],
               rows: controller.ficheirodetalheclientes.map(

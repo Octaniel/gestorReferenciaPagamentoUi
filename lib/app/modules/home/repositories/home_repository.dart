@@ -61,7 +61,20 @@ class HomeRepository extends Disposable {
     return false;
   }
 
+  Future<bool> atualizarTodosParatrue() async {
+    final response =
+    await dio.put("erro",
+        options: Options(
+            contentType: "application/json"
+        ));
+    if(response.statusCode==200){
+      return true;
+    }
+    return false;
+  }
+
   //dispose will be called automatically
   @override
   void dispose() {}
+
 }

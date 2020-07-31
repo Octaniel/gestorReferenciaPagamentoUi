@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gestorReferenciaPagamentoUi/app/app_controller.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/aeps/aeps_controller.dart';
 
 class ButaoNavBarAeps extends StatefulWidget {
@@ -10,23 +11,29 @@ class ButaoNavBarAeps extends StatefulWidget {
 
 class _ButaoNavBarAepsState
     extends ModularState<ButaoNavBarAeps, AepsController> {
+  AppController ap = Modular.get();
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.symmetric(horizontal: 20),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      elevation: 0,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          _flatButao(FontAwesomeIcons.fileAlt, "Details", 0),
-          Padding(padding: EdgeInsets.only(left: 137)),
-          _flatButao(
-            FontAwesomeIcons.fileInvoice,
-            "Headers",
-            1,
-          ),
-        ],
+    return Container(
+      width: !ap.isDrawer
+    ? controller.size.width
+            : controller.size.width - (controller.size.width * .15599),
+      child: Card(
+        margin: EdgeInsets.symmetric(horizontal: 20),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        elevation: 0,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _flatButao(FontAwesomeIcons.fileAlt, "Details", 0),
+            Padding(padding: EdgeInsets.only(left: 137)),
+            _flatButao(
+              FontAwesomeIcons.fileInvoice,
+              "Headers",
+              1,
+            ),
+          ],
+        ),
       ),
     );
   }

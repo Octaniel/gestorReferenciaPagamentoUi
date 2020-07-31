@@ -8,7 +8,7 @@ class ErroInternoModule extends ChildModule {
   @override
   List<Bind> get binds => [
         Bind((i) => ErroInternoRepository(Dio())),
-        Bind((i) => ErroInternoController()),
+        Bind((i) => ErroInternoController(i.get())),
       ];
 
   @override

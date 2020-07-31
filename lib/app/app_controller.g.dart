@@ -24,6 +24,21 @@ mixin _$AppController on _AppControllerBase, Store {
     });
   }
 
+  final _$isDrawerAtom = Atom(name: '_AppControllerBase.isDrawer');
+
+  @override
+  bool get isDrawer {
+    _$isDrawerAtom.reportRead();
+    return super.isDrawer;
+  }
+
+  @override
+  set isDrawer(bool value) {
+    _$isDrawerAtom.reportWrite(value, super.isDrawer, () {
+      super.isDrawer = value;
+    });
+  }
+
   final _$_AppControllerBaseActionController =
       ActionController(name: '_AppControllerBase');
 
@@ -41,7 +56,8 @@ mixin _$AppController on _AppControllerBase, Store {
   @override
   String toString() {
     return '''
-value: ${value}
+value: ${value},
+isDrawer: ${isDrawer}
     ''';
   }
 }

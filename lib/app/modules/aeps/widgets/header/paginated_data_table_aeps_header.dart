@@ -14,7 +14,6 @@ class PaginatedDataTableAepsHeader extends StatefulWidget {
 
 class _PaginatedDataTableAepsHeaderState
     extends ModularState<PaginatedDataTableAepsHeader, AepsController> {
-
   @override
   void initState() {
     controller.dados = "";

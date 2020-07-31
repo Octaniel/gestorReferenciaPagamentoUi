@@ -4,27 +4,35 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/meps/meps_controller.dart';
 
+import '../../../app_controller.dart';
+
 class ButaoNavBarMeps extends StatefulWidget {
   @override
   _ButaoNavBarMepsState createState() => _ButaoNavBarMepsState();
 }
 
 class _ButaoNavBarMepsState extends ModularState<ButaoNavBarMeps,MepsController> {
+  AppController ap = Modular.get();
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.symmetric(horizontal: 20),
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10)
-      ),
-      elevation: 0,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          _flatButao(FontAwesomeIcons.fileAlt, "Details",0),
-          Padding(padding: EdgeInsets.only(left: 150)),
-          _flatButao(FontAwesomeIcons.fileInvoice, "Headers",1,),
-        ],
+    return Container(
+      width: !ap.isDrawer
+          ? controller.size.width
+          : controller.size.width - (controller.size.width * .15599),
+      child: Card(
+        margin: EdgeInsets.symmetric(horizontal: 20),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10)
+        ),
+        elevation: 0,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _flatButao(FontAwesomeIcons.fileAlt, "Details",0),
+            Padding(padding: EdgeInsets.only(left: 150)),
+            _flatButao(FontAwesomeIcons.fileInvoice, "Headers",1,),
+          ],
+        ),
       ),
     );
   }

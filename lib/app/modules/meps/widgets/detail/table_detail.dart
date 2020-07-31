@@ -24,13 +24,13 @@ class _TableDetailState extends ModularState<TableDetail, MepsController> {
             return DataTable(
               columns: <DataColumn>[
                 dataColumn("Identificação\nLog EGR"),
-                dataColumn("Data / hora\ntransação cliente"),
-                dataColumn("Montante pago"),
-                dataColumn("Identificação\nda transação"),
-                dataColumn("Modo de envio\nda comunicação"),
-                dataColumn("Cod. Resposta\nda empresa"),
-                dataColumn("Nr. Identificação\nresposta"),
-                dataColumn("Referência\ndo pagamento"),
+                dataColumn("Data / hora\ntransação\ncliente"),
+                dataColumn("Montante\npago"),
+                dataColumn("Ident. da\ntransação"),
+                dataColumn("Modo de env.\nda comun."),
+                dataColumn("Cod. Resp.\nda empr."),
+                dataColumn("Nr. Identi.\nresposta"),
+                dataColumn("Referên.\ndo paga."),
               ],
               rows: controller.mepsDetailsResumo.map(
                     (name) {
@@ -40,9 +40,9 @@ class _TableDetailState extends ModularState<TableDetail, MepsController> {
                       dataCell(name.dataHoraTransacaoCliente),
                       dataCell(name.montantePago),
                       dataCell(name.identificacaoTransacao),
-                      dataCell(name.modoEnvioComunicacao),
-                      dataCell(name.codigoRespostaEmpresa),
-                      dataCell(name.numeroIdentificacaoResposta),
+                      dataCell(name.modoEnvioComunicacao+"                                                     "),
+                      dataCell(name.codigoRespostaEmpresa+"                                                 "),
+                      dataCell(name.numeroIdentificacaoResposta+"                                           "),
                       dataCell(name.referenciaPagamento),
                     ],
                   );

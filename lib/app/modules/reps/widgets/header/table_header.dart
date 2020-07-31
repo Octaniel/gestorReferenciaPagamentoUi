@@ -25,26 +25,26 @@ class _TableHeaderState extends ModularState<TableHeader, RepsController> {
             final f = new DateFormat('dd/MM/yyyy hh:mm:ss');
               return DataTable(
                 columns: <DataColumn>[
-                  dataColumn("Id. Instituição\nOrigem"),
-                  dataColumn("Id. Instituição\nDestino"),
+                  dataColumn("Id. Institui.\nOrigem"),
+                  dataColumn("Id. Institui.\nDestino"),
                   dataColumn("Identificação\nFicheiro"),
-                  dataColumn("Id. Último\nFicheiro Enviado"),
+                  dataColumn("Id. Último\nFicheiro Envi."),
                   dataColumn("Entidade"),
-                  dataColumn("Data\nProcessamento Orginal"),
-                  dataColumn("Nº Registos\nde Detalhe"),
-                  dataColumn("Data Criação"),
+                  dataColumn("Data\nProcessamento\nOrginal"),
+                  dataColumn("Nº Regi.\nde Deta."),
+                  dataColumn("Data Cri."),
                 ],
                 rows: controller.repsHeadersTrailers.map(
                       (name) {
                     return DataRow(
                       cells: [
-                        dataCell(name.instituicaoOrigem),
-                        dataCell(name.instituicaoDestino),
+                        dataCell(name.instituicaoOrigem+"                                        "),
+                        dataCell(name.instituicaoDestino+"                                        "),
                         dataCell(name.identificacaoFicheiro),
-                        dataCell(name.identficacaoUltimoFicheiroEnviado),
+                        dataCell(name.identficacaoUltimoFicheiroEnviado+"                                        "),
                         dataCell(name.entidade),
                         dataCell(name.dataProcessamentoOriginal),
-                        dataCell("${name.numeroRegistoDetalhe}"),
+                        dataCell("${name.numeroRegistoDetalhe}"+"                                        "),
                         dataCell(f.format(DateTime.parse(name.dataCria))),
                       ],
                     );

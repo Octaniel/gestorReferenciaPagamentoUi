@@ -1,8 +1,9 @@
 import 'dart:ui';
 
-import 'package:gestorReferenciaPagamentoUi/app/modules/pagamento/modules/pagamento_resumo.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/pagamento/repositories/pagamento_repository.dart';
 import 'package:mobx/mobx.dart';
+
+import 'modules/pagamento_resumo.dart';
 
 part 'pagamento_controller.g.dart';
 

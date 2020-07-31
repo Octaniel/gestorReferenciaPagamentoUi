@@ -23,8 +23,8 @@ class _TableDetailState extends ModularState<TableDetail, RepsController> {
             return DataTable(
               columns: <DataColumn>[
                 dataColumn("Registo Rejeitado"),
-                dataColumn("Código de Erro"),
-                dataColumn("Descritivo do Erro"),
+                dataColumn("Código\nde Erro"),
+                dataColumn("Descritivo\ndo Erro"),
                 dataColumn("Entidade"),
               ],
               rows: controller.repsDetailsResumo.map(
@@ -32,7 +32,7 @@ class _TableDetailState extends ModularState<TableDetail, RepsController> {
                   return DataRow(
                     cells: [
                       dataCell(name.registoRegeitado),
-                      dataCell(name.codigoErro),
+                      dataCell(name.codigoErro+"                                        "),
                       dataCell(name.discritivoErro),
                       dataCell(name.entidadeHeader),
                     ],

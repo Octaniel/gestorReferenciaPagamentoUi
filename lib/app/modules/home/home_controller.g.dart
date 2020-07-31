@@ -24,6 +24,21 @@ mixin _$HomeController on _HomeControllerBase, Store {
     });
   }
 
+  final _$sizeAtom = Atom(name: '_HomeControllerBase.size');
+
+  @override
+  Size get size {
+    _$sizeAtom.reportRead();
+    return super.size;
+  }
+
+  @override
+  set size(Size value) {
+    _$sizeAtom.reportWrite(value, super.size, () {
+      super.size = value;
+    });
+  }
+
   final _$isDrawerAtom = Atom(name: '_HomeControllerBase.isDrawer');
 
   @override
@@ -89,6 +104,7 @@ mixin _$HomeController on _HomeControllerBase, Store {
   String toString() {
     return '''
 apNot: ${apNot},
+size: ${size},
 isDrawer: ${isDrawer},
 v: ${v},
 errosInterno: ${errosInterno}

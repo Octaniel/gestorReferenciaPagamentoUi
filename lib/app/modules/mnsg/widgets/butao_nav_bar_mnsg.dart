@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/mnsg/mnsg_controller.dart';
+
+import '../../../app_controller.dart';
 
 class ButaoNavBarMnsg extends StatefulWidget {
   @override
@@ -9,50 +12,60 @@ class ButaoNavBarMnsg extends StatefulWidget {
 }
 
 class _ButaoNavBarMnsgState extends ModularState<ButaoNavBarMnsg,MnsgController> {
+  AppController ap = Modular.get();
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.symmetric(horizontal: controller.size.width*.25),
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20)
-      ),
-      elevation: 10,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          _flatButao("images/details.png", "Details",0),
-          Padding(padding: EdgeInsets.only(left: 150)),
-          _flatButao("images/header.png", "Headers",1,),
-        ],
+    return Container(
+      width: !ap.isDrawer
+          ? controller.size.width
+          : controller.size.width - (controller.size.width * .15599),
+      child: Card(
+        margin: EdgeInsets.symmetric(horizontal: 20),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10)
+        ),
+        elevation: 0,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _flatButao(FontAwesomeIcons.fileAlt, "Details",0),
+            Padding(padding: EdgeInsets.only(left: 150)),
+            _flatButao(FontAwesomeIcons.fileInvoice, "Headers",1),
+          ],
+        ),
       ),
     );
   }
 
-  Widget _flatButao(String urlImage, String nome, int index){
-    return Observer(builder: (_){
-      return FlatButton(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20)
-        ),
-        color:  controller.currentIndex == index?nome=="Headers"?
-        Colors.lightBlue.withOpacity(.5):Colors.lightGreen.withOpacity(.5):Colors.transparent,
-        onPressed: () {
-          controller.currentIndex = index;
-          controller.pageController.animateToPage(index,
-              duration: Duration(milliseconds: 300), curve: Curves.ease);
-        },
-        child: Row(
+  Widget _flatButao(IconData urlImage, String nome, int index) {
+    return FlatButton(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      color: Colors.transparent,
+      onPressed: () {
+        controller.currentIndex = index;
+        controller.pageController.animateToPage(index,
+            duration: Duration(milliseconds: 300), curve: Curves.ease);
+      },
+      child: Container(
+        height: 50,
+        child: Column(
           children: [
-            Image.asset(
+            FaIcon(
               urlImage,
-              height: 45,
-              width: 45,
-              color: controller.currentIndex == index?Colors.black87:Colors.black87.withOpacity(.7),
+              color: controller.currentIndex == index
+                  ? Colors.blue
+                  : Colors.black87.withOpacity(.8),
             ),
-            controller.currentIndex == index? Text(nome):Text("")
+            Text(
+              nome,
+              style: TextStyle(
+                  color: controller.currentIndex == index
+                      ? Colors.blue
+                      : Colors.black87.withOpacity(.8)),
+            ),
           ],
         ),
-      );
-    });
+      ),
+    );
   }
 }

@@ -12,4 +12,7 @@ abstract class _AppControllerBase with Store {
   void increment() {
     value++;
   }
+
+  @observable
+  bool isDrawer = true;
 }

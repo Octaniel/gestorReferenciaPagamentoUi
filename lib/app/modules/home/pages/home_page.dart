@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/home/widgets/body_home.dart';
-import 'package:gestorReferenciaPagamentoUi/app/modules/home/widgets/drawer_home.dart';
 import 'package:gestorReferenciaPagamentoUi/app/res/static.dart';
+import 'package:gestorReferenciaPagamentoUi/app/widgets/drawer.dart';
 
+import '../../../app_controller.dart';
 import '../home_controller.dart';
 
 class HomePage extends StatefulWidget {
@@ -25,22 +26,22 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
     _animationController.dispose();
     super.dispose();
   }
+  AppController ap = Modular.get();
 
   @override
   Widget build(BuildContext context) {
-   controller.size = MediaQuery.of(context).size;
-    controller.isDrawer = true;
-    //controller.readErro();
+   Size size = MediaQuery.of(context).size;
+   controller.readErro();
     return Scaffold(
       body: Observer(builder: (_) {
         return SafeArea(
           child: Container(
             color: background,
-            height: controller.size.height,
-            width: controller.size.width,
+            height: size.height,
+            width: size.width,
             child: Row(
               children: [
-                controller.isDrawer ? DrawerHome() : Container(),
+                ap.isDrawer ? DrawerG() : Container(),
                 BodyHome(),
               ],
             ),

@@ -26,10 +26,10 @@ class _TableHeaderState extends ModularState<TableHeader, AepsController> {
               return DataTable(
                 columns: <DataColumn>[
                   dataColumn("Entidade"),
-                  dataColumn("Instituição origem"),
-                  dataColumn("Instituição destino"),
+                  dataColumn("Instituição\norigem"),
+                  dataColumn("Instituição\ndestino"),
                   dataColumn("Data processamento"),
-                  dataColumn("Ultimo ficheiro enviado"),
+                  dataColumn("Ultimo ficheiro\nenviado"),
                   dataColumn("Data envio"),
                   dataColumn("Id por dia"),
                 ],
