@@ -9,20 +9,6 @@ part of 'app_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$AppController on _AppControllerBase, Store {
-  final _$valueAtom = Atom(name: '_AppControllerBase.value');
-
-  @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
-  }
-
-  @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
-    });
-  }
 
   final _$isDrawerAtom = Atom(name: '_AppControllerBase.isDrawer');
 
@@ -38,26 +24,25 @@ mixin _$AppController on _AppControllerBase, Store {
       super.isDrawer = value;
     });
   }
-
-  final _$_AppControllerBaseActionController =
-      ActionController(name: '_AppControllerBase');
+final _$urlAtom = Atom(name: '_AppControllerBase.url');
 
   @override
-  void increment() {
-    final _$actionInfo = _$_AppControllerBaseActionController.startAction(
-        name: '_AppControllerBase.increment');
-    try {
-      return super.increment();
-    } finally {
-      _$_AppControllerBaseActionController.endAction(_$actionInfo);
-    }
+  String get url {
+    _$urlAtom.reportRead();
+    return super.url;
+  }
+
+  @override
+  set url(String value) {
+    _$urlAtom.reportWrite(value, super.url, () {
+      super.url = value;
+    });
   }
 
   @override
   String toString() {
     return '''
-value: ${value},
-isDrawer: ${isDrawer}
+url: ${url}
     ''';
   }
 }

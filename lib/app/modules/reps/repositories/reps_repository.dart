@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:gestorReferenciaPagamentoUi/app/modules/reps/models/reps_detail_resumo.dart';
+import 'package:gestorReferenciaPagamentoUi/app/modules/reps/models/reps_detail.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/reps/models/reps_header_trailer.dart';
 import 'package:gestorReferenciaPagamentoUi/app/res/static.dart';
 import 'package:http/http.dart' as http;
@@ -13,16 +13,16 @@ class RepsRepository extends Disposable {
 
   Future<List> readDetail(int page, String codigoErro) async {
     final response =
-    await dio.get("${url}reps/detail?page=$page&size=6&codigoErro=$codigoErro",
+    await dio.get("${url}reps/detail?page=$page&size=5&codigoErro=$codigoErro",
           options: Options(
             contentType: "application/json",
           ));
     if(response.statusCode==200){
       List listRetorno = List();
-      ObservableList<RepsDetailResumo> produtoList = ObservableList();
+      ObservableList<RepsDetail> produtoList = ObservableList();
       List decode2 = await response.data["content"];
       decode2.forEach((f){
-        var cliente = RepsDetailResumo.fromJson(f);
+        var cliente = RepsDetail.fromJson(f);
         produtoList.add(cliente);
       });
       listRetorno.insert(0, produtoList);
@@ -30,14 +30,39 @@ class RepsRepository extends Disposable {
       return listRetorno;
     }
     List listRetorno = List();
-    ObservableList<RepsDetailResumo> produtoList = ObservableList();
+    ObservableList<RepsDetail> produtoList = ObservableList();
     listRetorno.insert(0, produtoList);
     return listRetorno;
   }
 
+  Future<List<String>> readFic(String idFile) async {
+    final response =
+    await dio.get("${url}modeloFicheiro/fic/reps", queryParameters: {
+      "identificacaoFile": idFile
+    });
+    if(response.statusCode==200){
+      List lt = response.data;
+      List<String> sts = List();
+      lt.forEach((element) {
+        sts.add(element);
+      });
+      return sts;
+    }
+    return List();
+  }
+
+  Future<bool> updateResolvido(int id) async {
+    final response =
+    await dio.put("${url}reps/$id");
+    if(response.statusCode==200){
+      return true;
+    }
+    return false;
+  }
+
   Future<List> readHeader(int page, String entidade) async {
     final response =
-    await http.get("${url}reps/header?page=$page&size=6&entidade=$entidade",headers: <String,String>{
+    await http.get("${url}reps/header?page=$page&size=5&entidade=$entidade",headers: <String,String>{
       "Content-Type":"application/json"
     });
     if(response.statusCode==200){
@@ -58,8 +83,6 @@ class RepsRepository extends Disposable {
     listRetorno.insert(0, produtoList);
     return listRetorno;
   }
-
-
   //dispose will be called automatically
   @override
   void dispose() {}

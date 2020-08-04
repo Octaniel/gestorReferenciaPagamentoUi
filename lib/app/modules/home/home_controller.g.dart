@@ -100,6 +100,15 @@ mixin _$HomeController on _HomeControllerBase, Store {
         .run(() => super.atualizarParatrue(id));
   }
 
+  final _$atualizarTodosParatrueAsyncAction =
+      AsyncAction('_HomeControllerBase.atualizarTodosParatrue');
+
+  @override
+  Future<bool> atualizarTodosParatrue() {
+    return _$atualizarTodosParatrueAsyncAction
+        .run(() => super.atualizarTodosParatrue());
+  }
+
   @override
   String toString() {
     return '''

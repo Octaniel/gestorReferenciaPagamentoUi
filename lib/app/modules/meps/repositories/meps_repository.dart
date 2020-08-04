@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:gestorReferenciaPagamentoUi/app/modules/meps/models/meps_detail_resumo.dart';
+import 'package:gestorReferenciaPagamentoUi/app/modules/meps/models/meps_detail.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/meps/models/meps_header_trailer.dart';
 import 'package:gestorReferenciaPagamentoUi/app/res/static.dart';
 import 'package:mobx/mobx.dart';
@@ -17,10 +17,10 @@ class MepsRepository extends Disposable {
     ));
     if(response.statusCode==200){
       List listRetorno = List();
-      ObservableList<MepsDetailResumo> produtoList = ObservableList();
+      ObservableList<MepsDetail> produtoList = ObservableList();
       List decode2 = await response.data["content"];
       decode2.forEach((f){
-        var cliente = MepsDetailResumo.fromJson(f);
+        var cliente = MepsDetail.fromJson(f);
         produtoList.add(cliente);
       });
       listRetorno.insert(0, produtoList);
@@ -28,9 +28,25 @@ class MepsRepository extends Disposable {
       return listRetorno;
     }
     List listRetorno = List();
-    ObservableList<MepsDetailResumo> produtoList = ObservableList();
+    ObservableList<MepsDetail> produtoList = ObservableList();
     listRetorno.insert(0, produtoList);
     return listRetorno;
+  }
+
+  Future<List<String>> readFic(String idFile) async {
+    final response =
+    await dio.get("${url}modeloFicheiro/fic/meps", queryParameters: {
+      "identificacaoFile": idFile
+    });
+    if(response.statusCode==200){
+      List lt = response.data;
+      List<String> sts = List();
+      lt.forEach((element) {
+        sts.add(element);
+      });
+      return sts;
+    }
+    return List();
   }
 
   Future<List> readHeader(int page, String entidade) async {

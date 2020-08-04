@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/reps/widgets/butao_nav_bar_reps.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/reps/widgets/detail/paginated_data_table_reps_detail.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/reps/widgets/header/paginated_data_table_reps_header.dart';

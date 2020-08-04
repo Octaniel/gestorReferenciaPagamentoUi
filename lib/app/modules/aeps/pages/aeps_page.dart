@@ -25,11 +25,13 @@ class AepsPage extends StatefulWidget {
 
 class _AepsPageState extends ModularState<AepsPage, AepsController> {
   AppController ap = Modular.get();
+  Size size;
 
   @override
   void initState() {
     super.initState();
     controller.pageController = PageController();
+
   }
 
   @override
@@ -40,15 +42,15 @@ class _AepsPageState extends ModularState<AepsPage, AepsController> {
 
   @override
   Widget build(BuildContext context) {
-    controller.size = MediaQuery.of(context).size;
+    size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: background,
       body: Observer(builder: (_) {
         return SafeArea(
           child: Container(
             color: background,
-            height: controller.size.height,
-            width: controller.size.width,
+            height: size.height,
+            width: size.width,
             child: Row(
               children: [
                 ap.isDrawer ? DrawerG() : Container(),
@@ -75,9 +77,9 @@ class _AepsPageState extends ModularState<AepsPage, AepsController> {
   _body() {
     return Container(
       width: !ap.isDrawer
-          ? controller.size.width
-          : controller.size.width - (controller.size.width * .15599),
-      height: controller.size.height - 159,
+          ? size.width
+          : size.width - (size.width * .15599),
+      height: size.height - 159,
       child: SizedBox.expand(
         child: PageView(
           controller: controller.pageController,

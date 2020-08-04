@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/aeps/aeps_controller.dart';
 import 'package:intl/intl.dart';
 
@@ -12,6 +13,7 @@ class TableHeader extends StatefulWidget {
 }
 
 class _TableHeaderState extends ModularState<TableHeader, AepsController> {
+  String idFile = "";
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,7 @@ class _TableHeaderState extends ModularState<TableHeader, AepsController> {
                   dataColumn("Data processamento"),
                   dataColumn("Ultimo ficheiro\nenviado"),
                   dataColumn("Data envio"),
-                  dataColumn("Id por dia"),
+                  dataColumn(""),
                 ],
                 rows: controller.ficheirHeaderClientes.map(
                       (name) {
@@ -43,7 +45,20 @@ class _TableHeaderState extends ModularState<TableHeader, AepsController> {
                         dataCell(name.dataProcessamento),
                         dataCell(name.ultimoFicheiroEmviado),
                         dataCell(f.format(DateTime.parse(name.dataEnvio))),
-                        dataCell("${name.idPorDia}"),
+                        DataCell(IconButton(
+                          icon: Tooltip(
+                            message: "Ver o ficheiro",
+                            child: FaIcon(
+                              FontAwesomeIcons.fileAlt,
+                              color: Colors.lightBlue,
+                            ),
+                          ),
+                          onPressed: () {
+                            idFile = name.dataProcessamento;
+                            controller.readFic(idFile);
+                            _showAlert(context);
+                          },
+                        )),
                       ],
                     );
                   },
@@ -53,6 +68,35 @@ class _TableHeaderState extends ModularState<TableHeader, AepsController> {
         }
       },
     );
+  }
 
+  void _showAlert(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(
+              "AEPS_$idFile",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            content: Observer(
+              builder: (_) {
+                return controller.sts.length > 0
+                    ? Container(
+                  height: 500,
+                  width: 580,
+                  child: ListView(
+                    shrinkWrap: true,
+                    children: controller.sts.map((e) => Text(e)).toList(),
+                  ),
+                )
+                    : CircularProgressIndicator(
+                  valueColor:
+                  AlwaysStoppedAnimation<Color>(Colors.lightBlue),
+                );
+              },
+            ),
+          );
+        });
   }
 }

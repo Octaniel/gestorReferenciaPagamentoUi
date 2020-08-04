@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gestorReferenciaPagamentoUi/app/modules/meps/models/meps_detail_resumo.dart';
+import 'package:gestorReferenciaPagamentoUi/app/modules/meps/models/meps_detail.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/meps/repositories/meps_repository.dart';
 import 'package:mobx/mobx.dart';
 
@@ -12,6 +12,9 @@ class MepsController = _MepsControllerBase with _$MepsController;
 abstract class _MepsControllerBase with Store {
 
   final repository = MepsRepository();
+
+  @observable
+  bool more = false;
 
   @observable
   int currentIndex = 0;
@@ -38,7 +41,10 @@ abstract class _MepsControllerBase with Store {
   int qpagina = 0;
 
   @observable
-  ObservableList<MepsDetailResumo> mepsDetailsResumo;
+  List<String> sts = List();
+
+  @observable
+  ObservableList<MepsDetail> mepsDetailsResumo;
 
   @observable
   ObservableList<MepsHeaderTrailer> mepsHeadersTrailers;
@@ -64,6 +70,14 @@ abstract class _MepsControllerBase with Store {
     var js = await repository.readHeader(pageHeader-1,dados);
     mepsHeadersTrailers = js.elementAt(0);
     qpaginaHeader = js.elementAt(1);
+    return js;
+  }
+
+  @action
+  Future<List> readFic(String idFile)async{
+    var js = await repository.readFic(idFile);
+    sts = js;
+    print(sts.length);
     return js;
   }
 

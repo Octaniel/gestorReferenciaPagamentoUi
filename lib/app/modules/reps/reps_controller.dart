@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:gestorReferenciaPagamentoUi/app/modules/reps/models/reps_detail_resumo.dart';
+import 'package:gestorReferenciaPagamentoUi/app/modules/reps/models/reps_detail.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/reps/models/reps_header_trailer.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/reps/repositories/reps_repository.dart';
 import 'package:mobx/mobx.dart';
@@ -13,6 +13,9 @@ class RepsController = _RepsControllerBase with _$RepsController;
 abstract class _RepsControllerBase with Store {
 
   final repository = RepsRepository();
+
+  @observable
+  bool more = false;
 
   @observable
   int currentIndex = 0;
@@ -39,7 +42,7 @@ abstract class _RepsControllerBase with Store {
   int qpagina = 0;
 
   @observable
-  ObservableList<RepsDetailResumo> repsDetailsResumo;
+  ObservableList<RepsDetail> repsDetails;
 
   @observable
   ObservableList<RepsHeaderTrailer> repsHeadersTrailers;
@@ -49,13 +52,16 @@ abstract class _RepsControllerBase with Store {
     page = v;
   }
 
+  @observable
+  List<String> sts = List();
+
   @action
   setQpagina(int value) =>qpagina = value;
 
   @action
   Future<List> readDetail()async{
     var js = await repository.readDetail(page-1,dados);
-    repsDetailsResumo = js.elementAt(0);
+    repsDetails = js.elementAt(0);
     setQpagina(js.elementAt(1));
     return js;
   }
@@ -66,6 +72,21 @@ abstract class _RepsControllerBase with Store {
     repsHeadersTrailers = js.elementAt(0);
     qpaginaHeader = js.elementAt(1);
     return js;
+  }
+
+  @action
+  Future<List> readFic(String idFile)async{
+    var js = await repository.readFic(idFile);
+    sts = js;
+    print(sts.length);
+    return js;
+  }
+
+  @action
+  Future<void> updateResolvido(int idFich)async{
+    if(await repository.updateResolvido(idFich)){
+     await readHeader();
+    }
   }
 
 }

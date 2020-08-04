@@ -8,17 +8,20 @@ class RepsHeaderTrailer {
   String dataProcessamentoOriginal;
   String numeroRegistoDetalhe;
   String dataCria;
+  bool resolvido;
 
-  RepsHeaderTrailer(
-      {this.id,
-        this.instituicaoOrigem,
-        this.instituicaoDestino,
-        this.identificacaoFicheiro,
-        this.identficacaoUltimoFicheiroEnviado,
-        this.entidade,
-        this.dataProcessamentoOriginal,
-        this.numeroRegistoDetalhe,
-        this.dataCria});
+  RepsHeaderTrailer({
+    this.id,
+    this.instituicaoOrigem,
+    this.instituicaoDestino,
+    this.identificacaoFicheiro,
+    this.identficacaoUltimoFicheiroEnviado,
+    this.entidade,
+    this.dataProcessamentoOriginal,
+    this.numeroRegistoDetalhe,
+    this.dataCria,
+    this.resolvido,
+  });
 
   RepsHeaderTrailer.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -26,11 +29,12 @@ class RepsHeaderTrailer {
     instituicaoDestino = json['instituicaoDestino'];
     identificacaoFicheiro = json['identificacaoFicheiro'];
     identficacaoUltimoFicheiroEnviado =
-    json['identficacaoUltimoFicheiroEnviado'];
+        json['identficacaoUltimoFicheiroEnviado'];
     entidade = json['entidade'];
     dataProcessamentoOriginal = json['dataProcessamentoOriginal'];
     numeroRegistoDetalhe = json['numeroRegistoDetalhe'];
     dataCria = json['dataCria'];
+    resolvido = json['resolvido'];
   }
 
   Map<String, dynamic> toJson() {
@@ -45,6 +49,7 @@ class RepsHeaderTrailer {
     data['dataProcessamentoOriginal'] = this.dataProcessamentoOriginal;
     data['numeroRegistoDetalhe'] = this.numeroRegistoDetalhe;
     data['dataCria'] = this.dataCria;
+    data['resolvido'] = this.resolvido;
     return data;
   }
 }

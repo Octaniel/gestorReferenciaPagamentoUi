@@ -23,6 +23,20 @@ mixin _$AepsController on _AepsControllerBase, Store {
       super.currentIndex = value;
     });
   }
+final _$moreAtom = Atom(name: '_AepsControllerBase.more');
+
+  @override
+  bool get more {
+    _$moreAtom.reportRead();
+    return super.more;
+  }
+
+  @override
+  set more(bool value) {
+    _$moreAtom.reportWrite(value, super.more, () {
+      super.more = value;
+    });
+  }
 
   final _$sizeAtom = Atom(name: '_AepsControllerBase.size');
 
@@ -133,14 +147,14 @@ mixin _$AepsController on _AepsControllerBase, Store {
       Atom(name: '_AepsControllerBase.ficheirodetalheclientes');
 
   @override
-  ObservableList<FicheiroDetalheClienteResumo> get ficheirodetalheclientes {
+  ObservableList<FicheiroDetalheCliente> get ficheirodetalheclientes {
     _$ficheirodetalheclientesAtom.reportRead();
     return super.ficheirodetalheclientes;
   }
 
   @override
   set ficheirodetalheclientes(
-      ObservableList<FicheiroDetalheClienteResumo> value) {
+      ObservableList<FicheiroDetalheCliente> value) {
     _$ficheirodetalheclientesAtom
         .reportWrite(value, super.ficheirodetalheclientes, () {
       super.ficheirodetalheclientes = value;
@@ -167,8 +181,23 @@ mixin _$AepsController on _AepsControllerBase, Store {
   final _$readAsyncAction = AsyncAction('_AepsControllerBase.read');
 
   @override
-  Future<List<dynamic>> read() {
+  Future<List> read() {
     return _$readAsyncAction.run(() => super.read());
+  }
+
+  final _$stsAtom = Atom(name: '_RepsControllerBase.sts');
+
+  @override
+  List<String> get sts {
+    _$stsAtom.reportRead();
+    return super.sts;
+  }
+
+  @override
+  set sts(List<String> value) {
+    _$stsAtom.reportWrite(value, super.dados, () {
+      super.sts = value;
+    });
   }
 
   final _$readHeaderAsyncAction = AsyncAction('_AepsControllerBase.readHeader');
@@ -206,7 +235,7 @@ mixin _$AepsController on _AepsControllerBase, Store {
   @override
   String toString() {
     return '''
-currentIndex: ${currentIndex},
+more: ${more},
 size: ${size},
 pageController: ${pageController},
 dados: ${dados},

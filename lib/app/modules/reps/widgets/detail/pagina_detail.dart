@@ -13,7 +13,7 @@ class _PaginaDetailState extends ModularState<PaginaDetail, RepsController> {
   @override
   Widget build(BuildContext context) {
     return Observer(builder: (_) {
-      return controller.repsDetailsResumo != null && controller.qpagina > 0
+      return controller.repsDetails != null && controller.qpagina > 0
           ? Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -92,7 +92,7 @@ class _PaginaDetailState extends ModularState<PaginaDetail, RepsController> {
                 ),
               ],
             )
-          : controller.repsDetailsResumo != null && controller.qpagina == 0
+          : controller.repsDetails != null && controller.qpagina == 0
               ? Text("Nenhum Detail Encontrado")
               : Text("");
     });

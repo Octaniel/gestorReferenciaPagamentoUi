@@ -1,13 +1,15 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:gestorReferenciaPagamentoUi/app/modules/aeps/models/FicheiroDetalheClienteResumo.dart';
-import 'package:gestorReferenciaPagamentoUi/app/modules/aeps/models/FicheiroHeaderCliente.dart';
+import 'package:gestorReferenciaPagamentoUi/app/modules/aeps/models/ficheiro_detalhe_cliente.dart';
+import 'package:gestorReferenciaPagamentoUi/app/modules/aeps/models/ficheiro_header_cliente.dart';
 import 'package:gestorReferenciaPagamentoUi/app/res/static.dart';
 import 'package:http/http.dart' as http;
 import 'package:mobx/mobx.dart';
 
 class AepsRepository extends Disposable {
+  Dio dio = Dio();
 
   Future<List> read(int page, String referencia) async {
     final response =
@@ -16,11 +18,11 @@ class AepsRepository extends Disposable {
     });
     if(response.statusCode==200){
       List listRetorno = List();
-      ObservableList<FicheiroDetalheClienteResumo> produtoList = ObservableList();
+      ObservableList<FicheiroDetalheCliente> produtoList = ObservableList();
       var decode = await jsonDecode(response.body);
       List decode2 = await decode["content"];
       decode2.forEach((f){
-        var cliente = FicheiroDetalheClienteResumo.fromJson(f);
+        var cliente = FicheiroDetalheCliente.fromJson(f);
         produtoList.add(cliente);
       });
       listRetorno.insert(0, produtoList);
@@ -28,9 +30,25 @@ class AepsRepository extends Disposable {
       return listRetorno;
     }
     List listRetorno = List();
-    ObservableList<FicheiroDetalheClienteResumo> produtoList = ObservableList();
+    ObservableList<FicheiroDetalheCliente> produtoList = ObservableList();
     listRetorno.insert(0, produtoList);
     return listRetorno;
+  }
+
+  Future<List<String>> readFic(String idFile) async {
+    final response =
+    await dio.get("${url}modeloFicheiro/fic/aeps", queryParameters: {
+      "identificacaoFile": idFile
+    });
+    if(response.statusCode==200){
+      List lt = response.data;
+      List<String> sts = List();
+      lt.forEach((element) {
+        sts.add(element);
+      });
+      return sts;
+    }
+    return List();
   }
 
   Future<List> readHeader(int page, String entidade) async {

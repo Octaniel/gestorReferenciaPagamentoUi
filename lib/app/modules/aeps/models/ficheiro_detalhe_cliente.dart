@@ -1,4 +1,7 @@
-class FicheiroDetalheClienteResumo {
+import 'ficheiro_header_cliente.dart';
+
+class FicheiroDetalheCliente {
+  int id;
   String referencia;
   String dataLimitePagamento;
   String montanteMaximo;
@@ -6,19 +9,24 @@ class FicheiroDetalheClienteResumo {
   String montanteMinimo;
   String codigoCliente;
   bool status;
-  String entidade;
+  String dataCria;
+  FicheiroHeaderCliente ficheiroHeaderCliente;
 
-  FicheiroDetalheClienteResumo(
-      {this.referencia,
-        this.dataLimitePagamento,
-        this.montanteMaximo,
-        this.dataInicioPagamento,
-        this.montanteMinimo,
-        this.codigoCliente,
-        this.status,
-        this.entidade});
+  FicheiroDetalheCliente({
+    this.id,
+    this.referencia,
+    this.dataLimitePagamento,
+    this.montanteMaximo,
+    this.dataInicioPagamento,
+    this.montanteMinimo,
+    this.codigoCliente,
+    this.status,
+    this.dataCria,
+    this.ficheiroHeaderCliente
+  });
 
-  FicheiroDetalheClienteResumo.fromJson(Map<String, dynamic> json) {
+  FicheiroDetalheCliente.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     referencia = json['referencia'];
     dataLimitePagamento = json['dataLimitePagamento'];
     montanteMaximo = json['montanteMaximo'];
@@ -26,11 +34,13 @@ class FicheiroDetalheClienteResumo {
     montanteMinimo = json['montanteMinimo'];
     codigoCliente = json['codigoCliente'];
     status = json['status'];
-    entidade = json['entidade'];
+    dataCria = json['dataCria'];
+    ficheiroHeaderCliente = FicheiroHeaderCliente.fromJson(json['ficheiroHeaderCliente']);
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
     data['referencia'] = this.referencia;
     data['dataLimitePagamento'] = this.dataLimitePagamento;
     data['montanteMaximo'] = this.montanteMaximo;
@@ -38,7 +48,8 @@ class FicheiroDetalheClienteResumo {
     data['montanteMinimo'] = this.montanteMinimo;
     data['codigoCliente'] = this.codigoCliente;
     data['status'] = this.status;
-    data['entidade'] = this.entidade;
+    data['dataCria'] = this.dataCria;
+    data['ficheiroHeaderCliente'] = this.ficheiroHeaderCliente;
     return data;
   }
 }

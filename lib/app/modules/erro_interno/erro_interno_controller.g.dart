@@ -87,6 +87,15 @@ mixin _$ErroInternoController on _ErroInternoControllerBase, Store {
         .run(() => super.atualizarParatrue(id));
   }
 
+  final _$atualizarTodosParatrueAsyncAction =
+      AsyncAction('_ErroInternoControllerBase.atualizarTodosParatrue');
+
+  @override
+  Future<bool> atualizarTodosParatrue() {
+    return _$atualizarTodosParatrueAsyncAction
+        .run(() => super.atualizarTodosParatrue());
+  }
+
   @override
   String toString() {
     return '''

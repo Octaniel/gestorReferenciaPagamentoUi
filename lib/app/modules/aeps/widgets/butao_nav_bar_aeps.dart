@@ -12,12 +12,13 @@ class ButaoNavBarAeps extends StatefulWidget {
 class _ButaoNavBarAepsState
     extends ModularState<ButaoNavBarAeps, AepsController> {
   AppController ap = Modular.get();
+  Size size;
+
   @override
   Widget build(BuildContext context) {
+    size = MediaQuery.of(context).size;
     return Container(
-      width: !ap.isDrawer
-    ? controller.size.width
-            : controller.size.width - (controller.size.width * .15599),
+      width: !ap.isDrawer ? size.width : size.width - (size.width * .15599),
       child: Card(
         margin: EdgeInsets.symmetric(horizontal: 20),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),

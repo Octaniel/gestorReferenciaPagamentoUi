@@ -129,17 +129,47 @@ mixin _$MepsController on _MepsControllerBase, Store {
     });
   }
 
+  final _$stsAtom = Atom(name: '_RepsControllerBase.sts');
+
+  @override
+  List<String> get sts {
+    _$stsAtom.reportRead();
+    return super.sts;
+  }
+
+  @override
+  set sts(List<String> value) {
+    _$stsAtom.reportWrite(value, super.dados, () {
+      super.sts = value;
+    });
+  }
+
+  final _$moreAtom = Atom(name: '_AepsControllerBase.more');
+
+  @override
+  bool get more {
+    _$moreAtom.reportRead();
+    return super.more;
+  }
+
+  @override
+  set more(bool value) {
+    _$moreAtom.reportWrite(value, super.more, () {
+      super.more = value;
+    });
+  }
+
   final _$mepsDetailsResumoAtom =
       Atom(name: '_MepsControllerBase.mepsDetailsResumo');
 
   @override
-  ObservableList<MepsDetailResumo> get mepsDetailsResumo {
+  ObservableList<MepsDetail> get mepsDetailsResumo {
     _$mepsDetailsResumoAtom.reportRead();
     return super.mepsDetailsResumo;
   }
 
   @override
-  set mepsDetailsResumo(ObservableList<MepsDetailResumo> value) {
+  set mepsDetailsResumo(ObservableList<MepsDetail> value) {
     _$mepsDetailsResumoAtom.reportWrite(value, super.mepsDetailsResumo, () {
       super.mepsDetailsResumo = value;
     });

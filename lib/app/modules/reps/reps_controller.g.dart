@@ -24,6 +24,21 @@ mixin _$RepsController on _RepsControllerBase, Store {
     });
   }
 
+  final _$moreAtom = Atom(name: '_RepsControllerBase.more');
+
+  @override
+  bool get more {
+    _$moreAtom.reportRead();
+    return super.more;
+  }
+
+  @override
+  set more(bool value) {
+    _$moreAtom.reportWrite(value, super.more, () {
+      super.more = value;
+    });
+  }
+
   final _$sizeAtom = Atom(name: '_RepsControllerBase.size');
 
   @override
@@ -66,6 +81,21 @@ mixin _$RepsController on _RepsControllerBase, Store {
   set dados(String value) {
     _$dadosAtom.reportWrite(value, super.dados, () {
       super.dados = value;
+    });
+  }
+
+  final _$stsAtom = Atom(name: '_RepsControllerBase.sts');
+
+  @override
+  List<String> get sts {
+    _$stsAtom.reportRead();
+    return super.sts;
+  }
+
+  @override
+  set sts(List<String> value) {
+    _$stsAtom.reportWrite(value, super.dados, () {
+      super.sts = value;
     });
   }
 
@@ -129,19 +159,19 @@ mixin _$RepsController on _RepsControllerBase, Store {
     });
   }
 
-  final _$repsDetailsResumoAtom =
-      Atom(name: '_RepsControllerBase.repsDetailsResumo');
+  final _$repsDetailsAtom =
+      Atom(name: '_RepsControllerBase.repsDetails');
 
   @override
-  ObservableList<RepsDetailResumo> get repsDetailsResumo {
-    _$repsDetailsResumoAtom.reportRead();
-    return super.repsDetailsResumo;
+  ObservableList<RepsDetail> get repsDetails {
+    _$repsDetailsAtom.reportRead();
+    return super.repsDetails;
   }
 
   @override
-  set repsDetailsResumo(ObservableList<RepsDetailResumo> value) {
-    _$repsDetailsResumoAtom.reportWrite(value, super.repsDetailsResumo, () {
-      super.repsDetailsResumo = value;
+  set repsDetails(ObservableList<RepsDetail> value) {
+    _$repsDetailsAtom.reportWrite(value, super.repsDetails, () {
+      super.repsDetails = value;
     });
   }
 
@@ -203,7 +233,7 @@ mixin _$RepsController on _RepsControllerBase, Store {
   @override
   String toString() {
     return '''
-currentIndex: ${currentIndex},
+more: ${more},
 size: ${size},
 pageController: ${pageController},
 dados: ${dados},
@@ -211,7 +241,7 @@ page: ${page},
 pageHeader: ${pageHeader},
 qpaginaHeader: ${qpaginaHeader},
 qpagina: ${qpagina},
-repsDetailsResumo: ${repsDetailsResumo},
+repsDetailsResumo: ${repsDetails},
 repsHeadersTrailers: ${repsHeadersTrailers}
     ''';
   }

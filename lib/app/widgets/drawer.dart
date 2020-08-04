@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gestorReferenciaPagamentoUi/app/app_controller.dart';
 import 'package:gestorReferenciaPagamentoUi/app/res/static.dart';
 import 'package:gestorReferenciaPagamentoUi/app/widgets/flat_buton.dart';
 
@@ -9,7 +10,7 @@ class DrawerG extends StatefulWidget {
   _DrawerGState createState() => _DrawerGState();
 }
 
-class _DrawerGState extends State<DrawerG> {
+class _DrawerGState extends ModularState<DrawerG, AppController> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -37,6 +38,7 @@ class _DrawerGState extends State<DrawerG> {
                 Tooltip(
                   message: "Voltar a tela inicial",
                   child: IconButton(icon: FaIcon(FontAwesomeIcons.home), onPressed: (){
+                    controller.url = "";
                     Modular.to.pushNamed("/");
                   }),
                 ),

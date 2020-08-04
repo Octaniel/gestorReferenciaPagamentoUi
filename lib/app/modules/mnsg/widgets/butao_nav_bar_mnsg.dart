@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/mnsg/mnsg_controller.dart';
@@ -28,9 +27,9 @@ class _ButaoNavBarMnsgState extends ModularState<ButaoNavBarMnsg,MnsgController>
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _flatButao(FontAwesomeIcons.fileAlt, "Details",0),
+            _flatButao(FontAwesomeIcons.fileAlt, "Request",0),
             Padding(padding: EdgeInsets.only(left: 150)),
-            _flatButao(FontAwesomeIcons.fileInvoice, "Headers",1),
+            _flatButao(FontAwesomeIcons.fileInvoice, "Response",1),
           ],
         ),
       ),

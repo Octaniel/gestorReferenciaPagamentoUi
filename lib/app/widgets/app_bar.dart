@@ -41,7 +41,7 @@ class _AppBarGState extends ModularState<AppBarG, AppController> {
             onPressed: () {
               Modular.to.pushNamed("/pagamento");
             },
-            color: Color(0xFF175CD4),
+            color: Colors.lightBlue,
             shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             child: Text(
@@ -67,7 +67,7 @@ class _AppBarGState extends ModularState<AppBarG, AppController> {
                   height: 15,
                   margin: EdgeInsets.only(left: 25,top: 10),
                   decoration: ShapeDecoration(
-                    color: Color(0xFF1860DE),
+                    color: Colors.lightBlue,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(40),
                     ),
