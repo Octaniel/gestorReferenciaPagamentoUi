@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/aeps/aeps_controller.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/aeps/models/ficheiro_detalhe_cliente.dart';
+import 'package:gestorReferenciaPagamentoUi/app/widgets/cosnst_methods.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../widgets/data_table_aeps.dart';
@@ -81,36 +82,120 @@ class _TableDetailState extends ModularState<TableDetail, AepsController> {
   void _showAlert(
       BuildContext context, FicheiroDetalheCliente ficheiroDetalheCliente) {
     final f = new DateFormat('dd/MM/yyyy hh:mm:ss');
+    final f1 = new DateFormat('dd/MM/yyyy');
     showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            content: Observer(builder: (_) {
-              return Container(
-                height: controller.more ? 370 : 220,
-                width: 300,
+            content: Container(
+                height: 400,
+                width: 320,
                 child: ListView(
                   shrinkWrap: true,
                   children: [
+                    Divider(height: 2,),
+                    Text(
+                      "Header e Trailer:",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    info(
+                      "Instituição Origem: ",
+                      80,
+                      ficheiroDetalheCliente
+                          .ficheiroHeaderCliente.instituicaoOrigem,
+                    ),
+                    Divider(height: 2,),
+                    info(
+                      "Instituição Destino: ",
+                      80,
+                      ficheiroDetalheCliente
+                          .ficheiroHeaderCliente.instituicaoDestino,
+                    ),
+                    Divider(height: 2,),
+                    info(
+                      "Data do Processamento: ",
+                      100,
+                      ficheiroDetalheCliente
+                          .ficheiroHeaderCliente.dataProcessamento,
+                    ),
+                    Divider(height: 2,),
+                    info(
+                      "Ultimo Ficheiro Enviado: ",
+                      100,
+                      ficheiroDetalheCliente.ficheiroHeaderCliente
+                          .ultimoFicheiroEmviado,
+                    ),
+                    Divider(height: 2,),
+                    info(
+                      "Entidade: ",
+                      60,
+                      ficheiroDetalheCliente
+                          .ficheiroHeaderCliente.entidade,
+                    ),
+                    Divider(height: 2,),
+                    info(
+                      "Data do Envio: ",
+                      100,
+                      f1.format(DateTime.parse(
+                          ficheiroDetalheCliente
+                              .ficheiroHeaderCliente.dataEnvio)),
+                    ),
+                    Divider(height: 2,),
+                    info(
+                      "Id Por Dia: ",
+                      20,
+                      ficheiroDetalheCliente
+                          .ficheiroHeaderCliente.idPorDia
+                          .toString(),
+                    ),
+                    Divider(height: 2,),
+                    SizedBox(height: 10,),
                     Text(
                       "Detail:",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    Text(
-                        "Referencia: ${ficheiroDetalheCliente.referencia}"),
-                    Text(
-                        "Data Limite do Pagamento: ${ficheiroDetalheCliente.dataLimitePagamento}"),
-                    Text(
-                        "Montante Maximo: ${ficheiroDetalheCliente.montanteMaximo}"),
-                    Text(
-                        "Data Inicio do Pagamento: ${ficheiroDetalheCliente.dataInicioPagamento}"),
-                    Text(
-                        "Montante Minimo: ${ficheiroDetalheCliente.montanteMinimo}"),
-                    Text(
-                        "Codigo Cliente: ${ficheiroDetalheCliente.codigoCliente}"),
+                    info(
+                      "Referencia: ",
+                      90,
+                      ficheiroDetalheCliente.referencia,
+                    ),
+                    Divider(height: 2,),
+                    info(
+                      "Data Limite do Pagamento: ",
+                      80,
+                      ficheiroDetalheCliente.dataLimitePagamento,
+                    ),
+                    Divider(height: 2,),
+                    info(
+                      "Montante Maximo: ",
+                      130,
+                      ficheiroDetalheCliente.montanteMaximo,
+                    ),
+                    Divider(height: 2,),
+                    info(
+                      "Data Inicio do Pagamento: ",
+                      80,
+                      ficheiroDetalheCliente.dataInicioPagamento,
+                    ),
+                    Divider(height: 2,),
+                    info(
+                      "Montante Minimo: ",
+                      130,
+                      ficheiroDetalheCliente.montanteMinimo,
+                    ),
+                    Divider(height: 2,),
+                    info(
+                      "Codigo Cliente: ",
+                      130,
+                      ficheiroDetalheCliente.montanteMinimo
+                    ),
+                    Divider(height: 2,),
                     Row(
                       children: [
-                        Text("Pago?:"),
+                        Text(
+                          "Pago?:",
+                          style: TextStyle(fontWeight: FontWeight.w600),
+                        ),
                         Text(
                           " ${ficheiroDetalheCliente.status ? 'Sim' : 'Não'}",
                           style: TextStyle(
@@ -120,60 +205,16 @@ class _TableDetailState extends ModularState<TableDetail, AepsController> {
                         )
                       ],
                     ),
-                    Text(
-                        "Data do Registro: ${f.format(DateTime.parse(ficheiroDetalheCliente.dataCria))}"),
-                    SizedBox(
-                      height: 5,
+                    Divider(height: 2,),
+                    info(
+                      "Data do Registro: ",
+                      160,
+                      f.format(DateTime.parse(ficheiroDetalheCliente.dataCria)),
                     ),
-                    Row(
-                      children: [
-                        Text(
-                          "Header e Trailer:",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(left: 5),
-                          width: 20,
-                          child: InkWell(
-                            onTap: () {
-                              controller.more = !controller.more;
-                              print(controller.more);
-                            },
-                            child: !controller.more
-                                ? FaIcon(FontAwesomeIcons.angleDown)
-                                : FaIcon(FontAwesomeIcons.angleUp),
-                          ),
-                        ),
-                      ],
-                    ),
-                    controller.more
-                        ? Container(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                    "Instituição Origem: ${ficheiroDetalheCliente.ficheiroHeaderCliente.instituicaoOrigem}"),
-                                Text(
-                                    "Instituição Destino: ${ficheiroDetalheCliente.ficheiroHeaderCliente.instituicaoDestino}"),
-                                Text(
-                                    "Data do Processamento: ${ficheiroDetalheCliente.ficheiroHeaderCliente.dataProcessamento}"),
-                                Text(
-                                    "Ultimo Ficheiro Enviado: ${ficheiroDetalheCliente.ficheiroHeaderCliente.ultimoFicheiroEmviado}"),
-                                Text(
-                                    "Entidade: ${ficheiroDetalheCliente.ficheiroHeaderCliente.entidade}"),
-                                Text(
-                                    "Data do Envio: ${ficheiroDetalheCliente.ficheiroHeaderCliente.dataEnvio}"),
-                                Text(
-                                    "Id Por Dia: ${ficheiroDetalheCliente.ficheiroHeaderCliente.idPorDia}"),
-                              ],
-                            ),
-                          )
-                        : Container(),
+                    Divider(height: 2,),
                   ],
                 ),
-              );
-            }),
+              ),
           );
         });
   }

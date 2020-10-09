@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/meps/models/meps_detail.dart';
+import 'package:gestorReferenciaPagamentoUi/app/widgets/cosnst_methods.dart';
 import 'package:gestorReferenciaPagamentoUi/app/widgets/data_table_aeps.dart';
 
 import '../../meps_controller.dart';
@@ -76,97 +77,189 @@ class _TableDetailState extends ModularState<TableDetail, MepsController> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            content: Observer(builder: (_) {
-              return Container(
-                height: controller.more ? 540 : 330,
-                width: 380,
-                child: ListView(
-                  shrinkWrap: true,
-                  children: [
-                    Text(
-                      "Detail:",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Text("Referencia: ${mepsDetail.identificacaoEgr}"),
-                    Text("Data Limite do Pagamento: ${mepsDetail.numeroEgr}"),
-                    Text(
-                        "Montante Maximo: ${mepsDetail.dataHoraTransacaoCliente}"),
-                    Text(
-                        "Data Inicio do Pagamento: ${mepsDetail.montantePago}"),
-                    Text("Montante Minimo: ${mepsDetail.tarifa}"),
-                    Text("Codigo Cliente: ${mepsDetail.tipoTerminal}"),
-                    Text(
-                        "Identificação do Terminal: ${mepsDetail.identificacaoTerminal}"),
-                    Text(
-                        "Identificação da Transação: ${mepsDetail.identificacaoTransacao}"),
-                    Text(
-                        "Localidade do Terminal: ${mepsDetail.localidadeTerminal}"),
-                    Text(
-                        "Modo Envio da Comunicação: ${mepsDetail.modoEnvioComunicacao}"),
-                    Text(
-                        "Codigo da Resposta da Empresa: ${mepsDetail.codigoRespostaEmpresa}"),
-                    Text(
-                        "Número da Identificação da Resposta: ${mepsDetail.numeroIdentificacaoResposta}"),
-                    Text(
-                        "Referencia do Pagamento: ${mepsDetail.referenciaPagamento}"),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          "Header e Trailer:",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(left: 5),
-                          width: 20,
-                          child: InkWell(
-                            onTap: () {
-                              controller.more = !controller.more;
-                              print(controller.more);
-                            },
-                            child: !controller.more
-                                ? FaIcon(FontAwesomeIcons.angleDown)
-                                : FaIcon(FontAwesomeIcons.angleUp),
-                          ),
-                        ),
-                      ],
-                    ),
-                    controller.more
-                        ? Container(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                    "Instituição Origem: ${mepsDetail.headerMeps.instituicaoOrigem}"),
-                                Text(
-                                    "Instituição Destino: ${mepsDetail.headerMeps.instituicaoDestino}"),
-                                Text(
-                                    "Data do Processamento: ${mepsDetail.headerMeps.dataProcessamento}"),
-                                Text(
-                                    " Identificação do Ultimo Ficheiro Enviado: ${mepsDetail.headerMeps.identificacaoUltimoFicheiro}"),
-                                Text(
-                                    "Entidade: ${mepsDetail.headerMeps.entidade}"),
-                                Text(
-                                    "Taxa da Iva: ${mepsDetail.headerMeps.taxaIva}"),
-                                Text(
-                                    "Montante Total da Transações: ${mepsDetail.headerMeps.montanteTotalTransacoes}"),
-                                Text(
-                                    "Total da Tarifação: ${mepsDetail.headerMeps.totalTarifacao}"),
-                                Text(
-                                    "Codigo da Moeda: ${mepsDetail.headerMeps.codigoMoeda}"),
-                                Text(
-                                    "Iva: ${mepsDetail.headerMeps.iva}"),
-                              ],
-                            ),
-                          )
-                        : Container(),
-                  ],
-                ),
-              );
-            }),
+            content: Container(
+              height: 585,
+              width: 460,
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  Text(
+                    "Header e Trailer:",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  info(
+                    "Instituição Origem: ",
+                    100,
+                    mepsDetail.headerMeps.instituicaoOrigem,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),info(
+                    "Instituição Destino: ",
+                    100,
+                    mepsDetail.headerMeps.instituicaoDestino,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),info(
+                    "Data do Processamento: ",
+                    100,
+                    mepsDetail.headerMeps.dataProcessamento,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),info(
+                    "Identificação do Ultimo Ficheiro Enviado: ",
+                    100,
+                    mepsDetail.headerMeps.identificacaoUltimoFicheiro,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),info(
+                    "Entidade: ",
+                    100,
+                    mepsDetail.headerMeps.entidade,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),info(
+                    "Taxa da Iva: ",
+                    100,
+                    mepsDetail.headerMeps.taxaIva,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),info(
+                    "Montante Total da Transações: ",
+                    150,
+                    mepsDetail.headerMeps.montanteTotalTransacoes,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),info(
+                    "Total da Tarifação: ",
+                    150,
+                    mepsDetail.headerMeps.totalTarifacao,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),info(
+                    "Codigo da Moeda: ",
+                    100,
+                    mepsDetail.headerMeps.codigoMoeda,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),info(
+                    "Iva: ",
+                    150,
+                    mepsDetail.headerMeps.iva,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "Detail:",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  info(
+                    "Referencia: ",
+                    100,
+                    mepsDetail.identificacaoEgr,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),info(
+                    "Data Limite do Pagamento: ",
+                    100,
+                    mepsDetail.numeroEgr,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),info(
+                    "Montante Maximo: ",
+                    150,
+                    mepsDetail.dataHoraTransacaoCliente,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),info(
+                    "Data Inicio do Pagamento: ",
+                    150,
+                    mepsDetail.montantePago,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),info(
+                    "Montante Minimo: ",
+                    100,
+                    mepsDetail.tarifa,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),info(
+                    "Codigo Cliente: ",
+                    100,
+                    mepsDetail.tipoTerminal,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),info(
+                    "Identificação do Terminal: ",
+                    100,
+                    mepsDetail.identificacaoTerminal,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),info(
+                    "Identificação da Transação: ",
+                    100,
+                    mepsDetail.identificacaoTransacao,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),info(
+                    "Localidade do Terminal: ",
+                    100,
+                    mepsDetail.localidadeTerminal,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),info(
+                    "Modo Envio da Comunicação: ",
+                    100,
+                    mepsDetail.modoEnvioComunicacao,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),info(
+                    "Codigo da Resposta da Empresa: ",
+                    100,
+                    mepsDetail.codigoRespostaEmpresa,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),info(
+                    "Número da Identificação da Resposta: ",
+                    100,
+                    mepsDetail.numeroIdentificacaoResposta,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),info(
+                    "Referencia do Pagamento: ",
+                    100,
+                    mepsDetail.referenciaPagamento,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),
+                ],
+              ),
+            ),
           );
         });
   }

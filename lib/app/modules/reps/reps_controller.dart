@@ -14,8 +14,6 @@ abstract class _RepsControllerBase with Store {
 
   final repository = RepsRepository();
 
-  @observable
-  bool more = false;
 
   @observable
   int currentIndex = 0;

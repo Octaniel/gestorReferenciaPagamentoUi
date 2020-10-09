@@ -24,21 +24,6 @@ mixin _$RepsController on _RepsControllerBase, Store {
     });
   }
 
-  final _$moreAtom = Atom(name: '_RepsControllerBase.more');
-
-  @override
-  bool get more {
-    _$moreAtom.reportRead();
-    return super.more;
-  }
-
-  @override
-  set more(bool value) {
-    _$moreAtom.reportWrite(value, super.more, () {
-      super.more = value;
-    });
-  }
-
   final _$sizeAtom = Atom(name: '_RepsControllerBase.size');
 
   @override
@@ -233,7 +218,6 @@ mixin _$RepsController on _RepsControllerBase, Store {
   @override
   String toString() {
     return '''
-more: ${more},
 size: ${size},
 pageController: ${pageController},
 dados: ${dados},

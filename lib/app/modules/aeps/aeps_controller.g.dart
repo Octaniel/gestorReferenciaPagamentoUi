@@ -23,20 +23,6 @@ mixin _$AepsController on _AepsControllerBase, Store {
       super.currentIndex = value;
     });
   }
-final _$moreAtom = Atom(name: '_AepsControllerBase.more');
-
-  @override
-  bool get more {
-    _$moreAtom.reportRead();
-    return super.more;
-  }
-
-  @override
-  set more(bool value) {
-    _$moreAtom.reportWrite(value, super.more, () {
-      super.more = value;
-    });
-  }
 
   final _$sizeAtom = Atom(name: '_AepsControllerBase.size');
 
@@ -235,7 +221,6 @@ final _$moreAtom = Atom(name: '_AepsControllerBase.more');
   @override
   String toString() {
     return '''
-more: ${more},
 size: ${size},
 pageController: ${pageController},
 dados: ${dados},

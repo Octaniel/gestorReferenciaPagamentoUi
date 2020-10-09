@@ -14,9 +14,6 @@ abstract class _AepsControllerBase with Store {
   final repository = AepsRepository();
 
   @observable
-  bool more = false;
-
-  @observable
   int currentIndex = 0;
 
   @observable

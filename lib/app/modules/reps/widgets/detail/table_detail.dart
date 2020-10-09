@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/reps/models/reps_detail.dart';
 import 'package:gestorReferenciaPagamentoUi/app/modules/reps/reps_controller.dart';
+import 'package:gestorReferenciaPagamentoUi/app/widgets/cosnst_methods.dart';
 import 'package:gestorReferenciaPagamentoUi/app/widgets/data_table_aeps.dart';
 import 'package:intl/intl.dart';
 
@@ -14,6 +15,7 @@ class TableDetail extends StatefulWidget {
 
 class _TableDetailState extends ModularState<TableDetail, RepsController> {
   bool more = false;
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List>(
@@ -69,84 +71,140 @@ class _TableDetailState extends ModularState<TableDetail, RepsController> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            content: Observer(builder: (_){
-              return Container(
-                height: controller.more?330:115,
-                width: 700,
-                child: ListView(
-                  shrinkWrap: true,
-                  children: [
-                    Text(
-                      "Detail:",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                        "Descritivo do Erro: ${repsDetailResumo.discritivoErro}"),
-                    Text("Codigo do Erro: ${repsDetailResumo.codigoErro}"),
-                    Text(
-                        "Registo Rejeitado: ${repsDetailResumo.registoRegeitado}"),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          "Header e Trailer:",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(left: 5),
-                          width: 20,
-                          child: InkWell(
-                            onTap: (){
-                              controller.more = !controller.more;
-                              print(controller.more);
-                            },
-                            child: !controller.more?FaIcon(FontAwesomeIcons.angleDown):FaIcon(FontAwesomeIcons.angleUp),
-                          ),
-                        ),
-                      ],
-                    ),
-                    controller.more? Container(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                              "Identificação do Ficheiro: ${repsDetailResumo.repsHeaderTrailer.identificacaoFicheiro}"),
-                          Text(
-                              "Quantidades de Guias: ${repsDetailResumo.repsHeaderTrailer.numeroRegistoDetalhe}"),
-                          Text(
-                              "Entidade: ${repsDetailResumo.repsHeaderTrailer.entidade}"),
-                          Text(
-                              "Data do Armazenamento do ficheiro: ${f.format(DateTime.parse(repsDetailResumo.repsHeaderTrailer.dataCria))}"),
-                          Text(
-                              "Data do Processamento Original: ${repsDetailResumo.repsHeaderTrailer.dataProcessamentoOriginal}"),
-                          Text(
-                              "Identificação do Ultimo Ficheiro Enviado: ${repsDetailResumo.repsHeaderTrailer.identficacaoUltimoFicheiroEnviado}"),
-                          Text(
-                              "Instituição do Destino: ${repsDetailResumo.repsHeaderTrailer.instituicaoDestino}"),
-                          Text(
-                              "Intituição da Origem: ${repsDetailResumo.repsHeaderTrailer.instituicaoOrigem}"),
-                          Row(
-                            children: [
-                              Text("Resolvido?:"),
-                              Text(
-                                " ${repsDetailResumo.repsHeaderTrailer.resolvido ? 'Sim' : 'Não'}",
-                                style: TextStyle(
-                                    color: repsDetailResumo.repsHeaderTrailer.resolvido
-                                        ? Colors.greenAccent
-                                        : Colors.redAccent),
-                              )
-                            ],
-                          ),
-                        ],
+            content: Container(
+              height: 370,
+              width: 665,
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  Text(
+                    "Header e Trailer:",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  info(
+                    "Identificação do Ficheiro: ",
+                    100,
+                    repsDetailResumo.repsHeaderTrailer.identificacaoFicheiro,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),
+                  info(
+                    "Quantidades de Guias: ",
+                    100,
+                    repsDetailResumo.repsHeaderTrailer.numeroRegistoDetalhe,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),
+                  info(
+                    "Entidade: ",
+                    80,
+                    repsDetailResumo.repsHeaderTrailer.entidade,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),
+                  info(
+                    "Data do Armazenamento do ficheiro: ",
+                    160,
+                    f.format(DateTime.parse(
+                        repsDetailResumo.repsHeaderTrailer.dataCria)),
+                  ),
+                  Divider(
+                    height: 2,
+                  ),
+                  info(
+                    "Data do Processamento Original: ",
+                    100,
+                    repsDetailResumo
+                        .repsHeaderTrailer.dataProcessamentoOriginal,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),
+                  info(
+                    "Identificação do Ultimo Ficheiro Enviado: ",
+                    100,
+                    repsDetailResumo
+                        .repsHeaderTrailer.identficacaoUltimoFicheiroEnviado,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),
+                  info(
+                    "Instituição do Destino: ",
+                    100,
+                    repsDetailResumo.repsHeaderTrailer.instituicaoDestino,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),
+                  info(
+                    "Intituição da Origem: ",
+                    100,
+                    repsDetailResumo.repsHeaderTrailer.instituicaoOrigem,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "Resolvido?:",
+                        style: TextStyle(fontWeight: FontWeight.w600),
                       ),
-                    ):Container(),
-                  ],
-                ),
-              );
-            }),
+                      Text(
+                        " ${repsDetailResumo.repsHeaderTrailer.resolvido ? 'Sim' : 'Não'}",
+                        style: TextStyle(
+                            color: repsDetailResumo.repsHeaderTrailer.resolvido
+                                ? Colors.greenAccent
+                                : Colors.redAccent),
+                      )
+                    ],
+                  ),
+                  Divider(
+                    height: 2,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "Detail:",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  info(
+                    "Descritivo do Erro: ",
+                    260,
+                    repsDetailResumo.discritivoErro.trim(),
+                  ),
+                  Divider(
+                    height: 2,
+                  ),
+                  info(
+                    "Codigo do Erro: ",
+                    60,
+                    repsDetailResumo.codigoErro,
+                  ),
+                  Divider(
+                    height: 2,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      info(
+                        "Registo Rejeitado: ",
+                        530,
+                        repsDetailResumo.registoRegeitado,
+                      ),
+                    ],
+                  ),
+                  Divider(
+                    height: 2,
+                  ),
+                ],
+              ),
+            ),
           );
         });
   }
